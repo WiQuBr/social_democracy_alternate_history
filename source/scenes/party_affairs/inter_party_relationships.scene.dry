@@ -12,8 +12,9 @@ max-visits: 12
 
 The SPD cannot govern by itself yet. Because we do not have an electoral majority, we need the support of other parties. Recently, our governments have consisted of the Weimar Coalition of the SPD, Center, and Democratic parties. We can reach out and build additional connections with these parties, or perhaps we can stand alone.
 
-- @liberals: Strengthen our bonds with the liberal german Party.
-- @center: Strengthen our bonds with the Christdemocrats.
+- @fdp: Strengthen our bonds with the liberal german Party.
+- @grüne: Strengthen our bonds with the green Party.
+- @cducsu: Strengthen our bonds with the Christdemocrats.
 - @linke: Work towards repairing relationships with the Left Party.
 - @spd_alone: The SPD can stand alone for now.
 - @easy_discard
@@ -24,94 +25,77 @@ subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; kpd_inter_party_seen += 1
-go-to: kpd_blutmai if blutmai = 1; kpd_1 if blutmai = 0 and kpd_coalition_success = 0 and (kpd_relation < 40 or kpd_rectifed_history = 1); kpd_rectification_of_history if kpd_relation >= 40 and kpd_rectifed_history = 0; kpd_2 if kpd_coalition_success = 1 and kpd_rectified_history = 1
+go-to: left_coalition_success = 0 and (left_relation < 40 or kpd_rectifed_history = 1); kpd_rectification_of_history if left_relation >= 40 and kpd_rectifed_history = 0; kpd_2 if kpd_coalition_success = 1 and kpd_rectified_history = 1
 
 @kpd_1
-on-arrival: kpd_relation += 6*(1 - dissent); communist_coalition += 1 if kpd_inter_party_seen <= 1; reformist_dissent += 2; z_relation -= 2; dvp_relation -= 3
+on-arrival: left_relation += 6*(1 - dissent); left_coalition += 1 if left_inter_party_seen <= 1; cducsu_relation -= 2; fdp_relation -= 3; grüne_relation += 1
 
-The communists are suspicious of our overtures, especially the Stalinist leadership, who persist in calling us "social fascists". However, connections are made at the grassroots and local levels.
+The Left is suspicious of our overtures, especially the pro-Russian fraction, who persist in calling us "warmongers". However, connections are made at the grassroots and local levels.
 
 @kpd_rectification_of_history
 
-One stumbling block for our relations with the KPD is our history of conflict, dating back to 1918 and 1919. The KPD is especially contemptuous of Gustav Noske, the SPD "bloodhound" who reportedly ordered the violent suppression of the Spartacist uprising and other KPD revolts. They also blame us for the deaths of Rosa Luxemburg and Karl Liebknecht, two SPD-turned-KPD leaders who were killed during the suppression of the uprising.
+One stumbling block for our relations with the Left is our history of conflict, dating back to 1918 and 1919. The Left is especially contemptuous of Gustav Noske, the SPD "bloodhound" who reportedly ordered the violent suppression of the Spartacist uprising and other KPD revolts. They also blame us for the deaths of Rosa Luxemburg and Karl Liebknecht, two SPD-turned-KPD leaders who were killed during the suppression of the uprising.
 
-For further improvements in KPD relations, it might be necessary to expel Noske, and hold some sort of commemoration for Luxemburg and Liebknecht.
+For further improvements in relations with the Left, it might be necessary to expel the long-deceased Noske, and hold some sort of commemoration for Luxemburg and Liebknecht.
 
 - @yes_history: Yes, we must apologize for our past actions.
 - @no_history: No, we have no need to apologize.
 
 @yes_history
-on-arrival: reformist_dissent += 12; reformist_strength -= 2; neorevisionist_dissent += 5; left_dissent -= 6; left_strength += 5; kpd_rectified_history = 1; z_relation -= 6; dvp_relation -= 6; ddp_relation -= 4; kpd_relation += 8*(1-dissent); coalition_dissent += 1
+on-arrival: reformist_dissent += 12; reformist_strength -= 2; neorevisionist_dissent += 5; left_dissent -= 6; left_strength += 5; kpd_rectified_history = 1; cducsu_relation -= 6; fdp_relation -= 6; grüne_relation -= 4; left_relation += 8*(1-dissent); coalition_dissent += 1 
 
-As part of normalizing relations with the KPD, we have to acknowledge the wrongdoings of our past. We have expelled Noske, and have held public commemorations for those killed by troops during the uprisings.
+As part of normalizing relations with the Left, we have to acknowledge the wrongdoings of our past. We have expelled the long-deceased Noske, and have held public commemorations for those killed by troops during the uprisings.
 
 This leads to tensions with the moderates and reformists within our party, and criticism from the conservative and liberal parties.
 
 @no_history
-on-arrival: kpd_relation -= 3
+on-arrival: left_relation -= 3
 
-We have no need to apologize for the actions of Ebert and Noske; it is the Communists' fault for launching a violent insurrection.
+We have no need to apologize for the actions of Ebert and Noske; it was the Communists' fault for launching a violent insurrection.
 
 
 @kpd_2
-on-arrival: kpd_relation += 8*(1 - dissent); communist_coalition += 1 if kpd_inter_party_seen <= 1; reformist_dissent += 2; z_relation -= 3; dvp_relation -= 3
+on-arrival: left_relation += 8*(1 - dissent); left_coalition += 1 if left_inter_party_seen <= 1; reformist_dissent += 2; cducsu_relation -= 3; fdp_relation -= 3
 
-After the success of the coalition government with the KPD, they are much more amenable to us.
+After the success of the coalition government with the Left, they are much more amenable to us.
 
-@kpd_blutmai
-on-arrival: kpd_relation += 3*(1 - dissent); reformist_dissent += 1
-
-After the events of Blütmai, reconciling with the Communists is difficult, if not impossible. Nevertheless, we must try.
-
-@center
+@cducsu
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; z_relation += 2 if z_party_leader == "Joos"
-go-to: center_op if z_in_government = 1 and spd_in_government = 0 and chancellor != "Brüning"; center_coalition if spd_in_government = 1 and z_in_government = 1; center_bruning if chancellor = "Brüning"
+on-arrival: resources -= 1; cduscu_relation += 2 if cducsu_party_leader == "Günther"
+go-to: center_op if cducsu_in_government = 1 and spd_in_government = 0 and chancellor != "Merz"; cducsu_coalition if spd_in_government = 1 and cducsu_in_government = 1; cducsu_merz if chancellor = "Merz"
 
-@center_op
-on-arrival: z_relation += 5*(1 - dissent)
+@cducsu_op
+on-arrival: cducsu_relation += 5*(1 - dissent)
 
-We are currently in opposition to the Center-led government, but that does not preclude the general building of feelings of good will.
+We are currently in opposition to the Christdemocrat-led government, but that does not preclude the general building of feelings of good will.
 
-@center_coalition
-on-arrival: z_relation += 8*(1 - dissent)
+@cducsu_coalition
+on-arrival: cducsu_relation += 8*(1 - dissent)
 
 We are currently coalition partners with them, so improving relations comes naturally.
 
-@center_bruning
-on-arrival: z_relation += 5*(1 - dissent)
+@cducsu_merz
+on-arrival: cducsu_relation += 5*(1 - dissent)
 
-The Brüning semi-autocratic regime makes building friendly relations difficult, but not impossible.
+The Merz semi-autocratic regime makes building friendly relations difficult, but not impossible.
 
-@liberals
+@fdp
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; ddp_relation += 5*(1 - dissent)
-go-to: dvp_stresemann if stresemann_dead = 0; dvp_loss if stresemann_dead = 1 and year <= 1930; dvp_moribound if year > 1930
+on-arrival: resources -= 1; fdp_relation += 3*(1 - dissent)
 
-The [+ ddp_name +] has been one of our closest allies through the course of the Republic.
+The FDP has not been our closest ally in the past, but good relations are positive for future coalition options.
 
-@dvp_stresemann
-on-arrival: dvp_relation += 8*(1 - dissent)
+@grüne
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; grüne_relation += 5*(1 - dissent)
 
-Gustav Stresemann, the leader of the DVP is the best foreign policy leaders of the republic, and while he has previously expressed monarchist tendencies, he has been friendly towards us.
-
-@dvp_loss
-on-arrival: dvp_relation += 5*(1 - dissent)
-
-With the death of Gustav Stresemann, the DVP is much less likely to be accommodating of us. In addition, the liberal parties are electorally in decline, so perhaps our efforts are best spent elsewhere.
-
-However, given the influence of the DVP among the other right-leaning parties [? if president == "Hindenburg": and with President Hindenburg ?], it can still be helpful to influence them.
-
-@dvp_moribound
-on-arrival: dvp_relation += 5*(1 - dissent)
-
-The liberal parties (both the [+ ddp_name +] and DVP) are electorally moribund, so perhaps our efforts are best spent elsewhere.
-
-However, given the influence of the DVP among the other right-leaning parties[? if president == "Hindenburg": and with President Hindenburg ?], it can still be helpful to influence them.
+The Green Party is our closest ally, having good relations is probably good for our future.
 
 @spd_alone
 
