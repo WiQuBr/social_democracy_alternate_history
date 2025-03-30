@@ -100,11 +100,11 @@ We have successfully passed a constitutional amendment to ban votes of no confid
 @presidential_powers
 subtitle: The president can no longer dissolve the Reichstag at will, or call a *Reichsexekution* on state governments.
 on-arrival: {!
-Q.reform_support = Q.spd_normalized + Q.ddp_normalized + Q.kpd_normalized;
+Q.reform_support = Q.spd_normalized + Q.grüne_normalized + Q.left_normalized;
 if (Q.z_relation > 49 && (Q.president == "Hindenburg" || Q.president == "Eckener")) {
-    Q.reform_support += Q.z_normalized;
+    Q.reform_support += Q.cducsu_normalized;
 } else if (Q.president == "Braun") {
-    Q.reform_support += Q.z_normalized - 0.03;
+    Q.reform_support += Q.cducsu_normalized - 0.2*Q.cducsu_normalized;
 }
 !}
 view-if: presidential_powers = 0
