@@ -105,8 +105,8 @@ Q.cducsu_relation = 50;
 Q.linke_relation = 25;
 Q.grüne_relation = 60;
 Q.fdp_relation = 35;
-// DNVP and AfD are invariably hostile
 Q.bsw_relation = 10;
+// AfD is invariably hostile
 Q.afd_relation = 0;
 
 Q.left_leader = "Kipping and Riexinger";
@@ -124,7 +124,8 @@ Q.prussian_government = "SPD";
 
 // The array of forces - paramilitary groups
 // Number of members in 2019 (in thousands)
-// Reichsbanner, stahlhelm, SA, rotfrontkämpferbund
+// Reichsbanner, stahlhelm, SA
+, rotfrontkämpferbund
 Q.rb_strength = 2000;
 Q.rb_militancy = 0.01;
 Q.women_in_rb = 0;
@@ -160,11 +161,11 @@ Q.reichswehr_loyalty = 0.2;
 // popular opinion
 // national ideology - on a binary scale
 // nationalism vs internationalism or pacifism or non-nationalism
-Q.nationalism = 60;
+Q.nationalism = 30;
 // socialism vs capitalism
-Q.socialism = 40;
+Q.socialism = 20;
 // pro-republic vs anti-republic
-Q.pro_republic = 59;
+Q.pro_republic = 79;
 
 Q.emergency_rule = 0;
 
@@ -224,8 +225,8 @@ Q.new_middle_qol = 100;
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'left', 'cducsu', 'grüne', 'fdp', 'afd', 'other'];
 
-// TODO: add 'sapd' later on
-Q.sapd_formed = 0;
+// TODO: add 'BSW' later on
+Q.bsw_formed = 0;
 
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
@@ -344,7 +345,6 @@ Q.in_blackberry_coalition = 0;
 // emergency government containing the SPD: only president Braun can do this.
 Q.in_emergency_government = 0;
 Q.in_spd_majority = 0;
-Q.grand_coalition_failed = 0;
 // if the SPD is ruling as part of a minority government
 Q.in_minority_government = 0;
 // national unity governmet
@@ -423,8 +423,8 @@ Q.factory_takeovers = 0;
 // progress on the moderate economic plan
 Q.moderate_plan_progress = 0;
 // European Union negotiation process
-Q.eu = 0;
-Q.eu_progress = 0;
+Q.eu = 1;
+Q.eu_progress = 3;
 // science/education
 Q.science = 0;
 Q.education_science = 0;
@@ -616,8 +616,8 @@ go-to: main if difficulty >= 0; main.main_easy if difficulty < 0
 
 = 2019
 
-It is a bright time for German democracy. After a period of struggle, inflation is finally under control, and the economy is expanding steadily. In foreign policy, we have reached agreements with the Western powers and the Soviet Union that might make genuine peace a reality. 
+It is a hard time for German democracy. After a period of peace and wealth, the economy stagnates. The austerity measures are slowly destroysing the german infrastructure and the ongoing tensions in the world are putting a atrain on the export industry.  
 
-Now, the task of Social Democracy is to prepare for the next election. The bourgeois-right government of Wilhelm Marx is unpopular, and we stand to gain. Perhaps the next government will have a socialist majority.
+Now, the task of Social Democracy is to prepare for the next election. The GroKo government of Angela Merkel is popular, and we stand to lose. Perhaps the next government won't have a socialist majority.
 
 
