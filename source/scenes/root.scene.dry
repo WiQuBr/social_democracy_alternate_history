@@ -607,7 +607,7 @@ Q.fdp_relation = 31;
 Q.grüne_relation = 55;
 Q.budget = 2;
 this.state.disableSaves = true;
-
+!}
 go-to: 1928_main
 
 @1928_main
