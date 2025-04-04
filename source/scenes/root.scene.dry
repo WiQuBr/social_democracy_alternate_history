@@ -563,6 +563,7 @@ Q.schumacher_advisor = 0; // Kurt Schumacher (post-1930)
 Q.hirschfeld_advisor = 0; // Magnus Hirschfeld
 Q.radbruch_advisor = 0; // Gustav Radbruch
 Q.stampfer_advisor = 0; // Friedrich Stampfer
+!}
 
 set-bg: img/map_2.jpg
 new-page: true
@@ -619,4 +620,3 @@ go-to: main if difficulty >= 0; main.main_easy if difficulty < 0
 It is a hard time for German democracy. After a period of peace and wealth, the economy stagnates. The austerity measures are slowly destroysing the german infrastructure and the ongoing tensions in the world are putting a atrain on the export industry.  
 
 Now, the task of Social Democracy is to prepare for the next election. The GroKo government of Angela Merkel is popular, and we stand to lose. Perhaps the next government won't have a socialist majority.
-!}
