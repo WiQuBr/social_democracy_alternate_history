@@ -21,26 +21,65 @@ In our media and campaign materials, who should we consider as our main opponent
 - @easy_discard
 
 @anti_dem
-on-arrival: enemies = "anti-democratic parties"; center_strength += 5; reformist_strength += 5; left_dissent += 5; workers_bsw -= 2; workers_afd -= 2; bsw_relation -= 10
+on-arrival: {
+    enemies = "anti-democratic parties";
+    center_strength += 5;
+    reformist_strength += 5;
+    left_dissent += 5;
+    workers_bsw -= 2;
+    workers_afd -= 2;
+    bsw_relation -= 10;
+}
 
-Attacking the far right and populistic left is popular among all but the left wing of our party, who would prefer to be fighting the bourgeois parties. 
+Attacking the far right and populistic left is popular among all but the left wing of our party, who would prefer to be fighting the bourgeois parties.
 
 @far_right
-on-arrival: enemies = "far right"; left_strength += 5; left_dissent -= 5; workers_afd -= 3;
+on-arrival: {
+    enemies = "far right";
+    left_strength += 5;
+    left_dissent -= 5;
+    workers_afd -= 3;
+}
 
 Attacking the far right is popular among the entire party, although the left considers the bourgeois parties to be just as dangerous, while the right is critical of our lack of response to the KPD. Our bourgeois coalition partners are also skeptical of our lack of commitment to anti-communism.
 
 @left
-on-arrival: enemies = "The Left Party"; reformist_strength += 5; left_dissent += 8; reformist_dissent -= 5; left_relation -= 15; fdp_relation += 5; cducsu_relation += 5; workers_left -= 4;
+on-arrival: {
+    enemies = "The Left Party";
+    reformist_strength += 5;
+    left_dissent += 8;
+    reformist_dissent -= 5;
+    left_relation -= 15;
+    fdp_relation += 5;
+    cducsu_relation += 5;
+    workers_left -= 4;
+}
 
 Attacking the Left Party is supported by all but the most left-wing socialists, and wins us some measure of approval among the bourgeois parties. However, If we are to reconcile with the Left, this may not be the best choice.
 
 @green
-on-arrival: enemies = "The Green Party"; reformist_dissent += 5; labor_dissent += 2; gruene_relation -= 10; cducsu_relation += 3; workers_gruene -= 2;
+on-arrival: {
+    enemies = "The Green Party";
+    reformist_dissent += 5;
+    labor_dissent += 2;
+    gruene_relation -= 10;
+    cducsu_relation += 3;
+    workers_gruene -= 2;
+}
 
 Attacking the Green Party is irritating many in our party, the Green Party is confused, however the Christdemocrats like us more now.
 
 @bourgeois
-on-arrival: enemies = "bourgeois parties"; left_strength += 8; left_dissent -= 5; fdp_relation -= 5; cducsu_relation -= 5; left_relation += 5; reformist_dissent += 8; workers_cducsu -= 3; coalition_dissent += 1
+on-arrival: {
+    enemies = "bourgeois parties";
+    left_strength += 8;
+    left_dissent -= 5;
+    fdp_relation -= 5;
+    cducsu_relation -= 5;
+    left_relation += 5;
+    reformist_dissent += 8;
+    workers_cducsu -= 3;
+    coalition_dissent += 1;
+}
 
 Our anti-bourgeois rhetoric is popular among the left, but may make it harder to build the coalitions that are necessary for government in the future.
