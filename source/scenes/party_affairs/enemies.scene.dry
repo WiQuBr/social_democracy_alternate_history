@@ -36,7 +36,7 @@ on-arrival: enemies = "The Left Party"; reformist_strength += 5; left_dissent +=
 Attacking the Left Party is supported by all but the most left-wing socialists, and wins us some measure of approval among the bourgeois parties. However, If we are to reconcile with the Left, this may not be the best choice.
 
 @green
-on-arrival: enemies = "The Green Party"; reformist_dissent += 5; labor_dissent += 2; grüne_relation -= 10; cducsu_relation += 3; workers_grüne -= 2;
+on-arrival: enemies = "The Green Party"; reformist_dissent += 5; labor_dissent += 2; gruene_relation -= 10; cducsu_relation += 3; workers_gruene -= 2;
 
 Attacking the Green Party is irritating many in our party, the Green Party is confused, however the Christdemocrats like us more now.
 
