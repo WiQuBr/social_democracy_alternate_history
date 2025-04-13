@@ -166,7 +166,7 @@ CDU/CSU: [+ cducsu_votes +]%
 
 Left: [+ left_votes +]%
 
-Grüne: [+ grüne_votes +]%
+Grüne: [+ gruene_votes +]%
 
 FDP: [+ fdp_votes +]%
 
@@ -174,16 +174,16 @@ AfD: [+ afd_votes +]%
 
 **Detailed results for each demographic**
 
-Workers: SPD: [+ workers_spd_display +]%, CDU/CSU: [+ workers_cducsu_display +]%, Left: [+ workers_left_display +]%, Grüne [+ workers_grüne_display +]%, FDP: [+ workers_fdp_display +]%; AfD: [+ workers_afd_display +]%, Others: [+ workers_other_display +]% [? if bsw_formed: BSW: [+ workers_bsw_display +]% ?]
+Workers: SPD: [+ workers_spd_display +]%, CDU/CSU: [+ workers_cducsu_display +]%, Left: [+ workers_left_display +]%, Grüne [+ workers_gruene_display +]%, FDP: [+ workers_fdp_display +]%; AfD: [+ workers_afd_display +]%, Others: [+ workers_other_display +]% [? if bsw_formed: BSW: [+ workers_bsw_display +]% ?]
 
-New Middle Class: SPD: [+ new_middle_spd_display +]%, CDU/CSU: [+ new_middle_cducsu_display +]%, Left: [+ new_middle_left_display +]%, Grüne: [+ new_middle_grüne_display +]%, FDP: [+ new_middle_fdp_display +]%; AfD: [+ new_middle_afd_display +]%, Others: [+ new_middle_other_display +]% [? if bsw_formed: BSW: [+ new_middle_bsw_display +]% ?]
+New Middle Class: SPD: [+ new_middle_spd_display +]%, CDU/CSU: [+ new_middle_cducsu_display +]%, Left: [+ new_middle_left_display +]%, Grüne: [+ new_middle_gruene_display +]%, FDP: [+ new_middle_fdp_display +]%; AfD: [+ new_middle_afd_display +]%, Others: [+ new_middle_other_display +]% [? if bsw_formed: BSW: [+ new_middle_bsw_display +]% ?]
 
-Old Middle Class: SPD: [+ old_middle_spd_display +]%, CDU/CSU: [+ old_middle_cducsu_display +]%, Left: [+ old_middle_left_display +]%, Grüne: [+ old_middle_grüne_display +]%, FDP: [+ old_middle_fdp_display +]%; AfD: [+ old_middle_afd_display +]%, Others: [+ old_middle_other_display +]% [? if bsw_formed: BSW: [+ old_middle_bsw_display +]% ?]
+Old Middle Class: SPD: [+ old_middle_spd_display +]%, CDU/CSU: [+ old_middle_cducsu_display +]%, Left: [+ old_middle_left_display +]%, Grüne: [+ old_middle_gruene_display +]%, FDP: [+ old_middle_fdp_display +]%; AfD: [+ old_middle_afd_display +]%, Others: [+ old_middle_other_display +]% [? if bsw_formed: BSW: [+ old_middle_bsw_display +]% ?]
 
-Rural: SPD: [+ rural_spd_display +]%, CDU/CSU: [+ rural_cducsu_display +]%, Left: [+ rural_left_display +]%, Grüne: [+ rural_grüne_display +]%, FDP: [+ rural_fdp_display +]%; AfD: [+ rural_afd_display +]%, Others: [+ rural_other_display +]% [? if bsw_formed: BSW: [+ rural_bsw_display +]% ?]
+Rural: SPD: [+ rural_spd_display +]%, CDU/CSU: [+ rural_cducsu_display +]%, Left: [+ rural_left_display +]%, Grüne: [+ rural_gruene_display +]%, FDP: [+ rural_fdp_display +]%; AfD: [+ rural_afd_display +]%, Others: [+ rural_other_display +]% [? if bsw_formed: BSW: [+ rural_bsw_display +]% ?]
 
-Unemployed: SPD: [+ unemployed_spd_display +]%, CDU/CSU: [+ unemployed_cducsu_display +]%, Left: [+ unemployed_left_display +]%, Grüne: [+ unemployed_grüne_display +]%, FDP: [+ unemployed_fdp_display +]%; AfD: [+ unemployed_afd_display +]%, Others: [+ unemployed_other_display +]% [? if bsw_formed: BSW: [+ unemployed_bsw_display +]% ?]
+Unemployed: SPD: [+ unemployed_spd_display +]%, CDU/CSU: [+ unemployed_cducsu_display +]%, Left: [+ unemployed_left_display +]%, Grüne: [+ unemployed_gruene_display +]%, FDP: [+ unemployed_fdp_display +]%; AfD: [+ unemployed_afd_display +]%, Others: [+ unemployed_other_display +]% [? if bsw_formed: BSW: [+ unemployed_bsw_display +]% ?]
 
-Catholics: SPD: [+ catholics_spd_display +]%, CDU/CSU: [+ catholics_cducsu_display +]%, Left: [+ catholics_left_display +]%, Grüne: [+ catholics_grüne_display +]%, FDP: [+ catholics_fdp_display +]%; AfD: [+ catholics_afd_display +]%, Others: [+ catholics_other_display +]% [? if bsw_formed: BSW: [+ catholics_bsw_display +]% ?]
+Catholics: SPD: [+ catholics_spd_display +]%, CDU/CSU: [+ catholics_cducsu_display +]%, Left: [+ catholics_left_display +]%, Grüne: [+ catholics_gruene_display +]%, FDP: [+ catholics_fdp_display +]%; AfD: [+ catholics_afd_display +]%, Others: [+ catholics_other_display +]% [? if bsw_formed: BSW: [+ catholics_bsw_display +]% ?]
 
 Support for the Republic: [+ pro_republic_disp +]%
