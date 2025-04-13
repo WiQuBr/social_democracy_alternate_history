@@ -93,7 +93,7 @@ The FDP has not been our closest ally in the past, but good relations are positi
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; grüne_relation += 5*(1 - dissent)
+on-arrival: resources -= 1; gruene_relation += 5*(1 - dissent)
 
 The Green Party is our closest ally, having good relations is probably good for our future.
 
