@@ -6,7 +6,6 @@ is-card: true
 on-arrival: month_actions += 1; inter_party_relationships_timer = 6;
 card-image: img/weimar_coalition_2.jpg
 max-visits: 12
-#subtitle: Building relations with the other political parties of Germany.
 
 = Inter-Party Relationships
 
@@ -17,15 +16,13 @@ The SPD cannot govern by itself yet. Because we do not have an electoral majorit
 - @cducsu: Strengthen our bonds with the Christdemocrats.
 - @linke: Work towards repairing relationships with the Left Party.
 - @spd_alone: The SPD can stand alone for now.
-- @easy_discard
-
 
 @linke
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; kpd_inter_party_seen += 1
-go-to: left_coalition_success = 0 and (left_relation < 40 or kpd_rectifed_history = 1); kpd_rectification_of_history if left_relation >= 40 and kpd_rectifed_history = 0; kpd_2 if left_coalition_success = 1 and kpd_rectified_history = 1
+go-to: left_coalition_success = 0 and left_relation < 40 ? kpd_rectification_of_history : kpd_2
 
 @kpd_1
 on-arrival: left_relation += 6*(1 - dissent); left_coalition += 1 if left_inter_party_seen <= 1; cducsu_relation -= 2; fdp_relation -= 3; grüne_relation += 1
@@ -42,7 +39,7 @@ For further improvements in relations with the Left, it might be necessary to ex
 - @no_history: No, we have no need to apologize.
 
 @yes_history
-on-arrival: reformist_dissent += 12; reformist_strength -= 2; neorevisionist_dissent += 5; left_dissent -= 6; left_strength += 5; kpd_rectified_history = 1; cducsu_relation -= 6; fdp_relation -= 6; grüne_relation -= 4; left_relation += 8*(1-dissent); coalition_dissent += 1 
+on-arrival: reformist_dissent += 12; reformist_strength -= 2; neorevisionist_dissent += 5; left_dissent -= 6; left_strength += 5; kpd_rectified_history = 1; cducsu_relation -= 6; fdp_relation -= 6; gruene_relation -= 4; left_relation += 8*(1-dissent); coalition_dissent += 1
 
 As part of normalizing relations with the Left, we have to acknowledge the wrongdoings of our past. We have expelled the long-deceased Noske, and have held public commemorations for those killed by troops during the uprisings.
 
@@ -52,7 +49,6 @@ This leads to tensions with the moderates and reformists within our party, and c
 on-arrival: left_relation -= 3
 
 We have no need to apologize for the actions of Ebert and Noske; it was the Communists' fault for launching a violent insurrection.
-
 
 @kpd_2
 on-arrival: left_relation += 8*(1 - dissent); left_coalition += 1 if left_inter_party_seen <= 1; reformist_dissent += 2; cducsu_relation -= 3; fdp_relation -= 3
