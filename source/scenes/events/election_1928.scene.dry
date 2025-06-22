@@ -304,7 +304,7 @@ Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ weimar_coalition +]%
 
 Grand Coalition (SPD + Z + BVP + [+ ddp_name +] + DVP): [+ grand_coalition +]%
 
-Socialliberal Coalition (SPD + [+ ddp_name +]) : [+ socialliberal_coalition +] %
+Socialliberal Coalition (SPD + [+ ddp_name +]) : [+ Q.socialliberal_coalition +] %
 
 Bourgeois Coalition (Z + BVP + [+ ddp_name +] + DVP + Others): [+ bourgeois_coalition +]%
 
