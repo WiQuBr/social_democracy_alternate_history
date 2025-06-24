@@ -955,6 +955,7 @@ title: We can form a Socialliberal Coalition.
 subtitle: SPD + [+ ddp_name +] [? if sapd_formed and kpd_relation >= 20 : + SAPD toleration ?] ([+ socialliberal_coalition +]%)
 view-if: socialliberal_coalition >= 50
 on-arrival: leverage += 15;in_socialliberal_coalition = 1; spd_in_government = 1; in_weimar_coalition = 0; in_popular_front = 0; in_left_front = 0; foreign_minister_party = ddp_name; interior_minister_party = ddp_name; justice_minister_party = ddp_name; labor_minister_party = ddp_name; reichswehr_minister_party = ddp_name; economic_minister_party = ddp_name; finance_minister_party = ddp_name; agriculture_minister_party = ddp_name; foreign_minister = "Schücking"; interior_minister = "Preuß"; justice_minister = "Koch-Weser"; labor_minister = "Falk"; reichswehr_minister = "Geßler"; economic_minister = "Dietrich"; finance_minister = "Gothein"; agriculture_minister = "Dietrich";
+achievement: socialliberal_coalition
 
 We have enough votes to form a "Socialliberal Coalition" government consisting of the SPD and Democratic ([+ ddp_name +]) parties! This would be a new coalition to form since 1919!
 
