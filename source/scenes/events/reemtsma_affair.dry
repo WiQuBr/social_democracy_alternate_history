@@ -5,3 +5,7 @@ on-arrival: workers_spd -= 5; unemployed_spd -= 5; workers_other += 5; workers_k
 max-visits: 1
 tags: event
 new-page: true
+
+The newspaper "Die Weltbühne" exposed tax privileges, shady debt settlements, and backdoor dealings between the German Finance Ministry and the Reemtsma cigarette corporation.
+
+@root Ahhh fuck.
