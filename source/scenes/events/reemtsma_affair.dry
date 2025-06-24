@@ -1,1 +1,7 @@
-view
+title: Reemtsma Affair
+subtitle: corporate tax privileges granted to Reemtsma
+view-if: year >= 1929 month >= 11 
+on-arrival: 
+max-visits: 1
+tags: event
+new-page: true
