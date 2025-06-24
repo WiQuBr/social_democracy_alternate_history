@@ -354,7 +354,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_weimar_coalition: **Weimarer Koalition** - form a Weimar coalition. ?]
 
-[? if game_achievement_socialliberal_coalition: **Sozialliberale Koalition** - form a Scocialliberal coalition. ?]
+[? if game_achievement_socialliberal_coalition: **Sozialliberale Koalition** - form a Socialliberal coalition. ?]
 
 [? if game_achievement_majority_party: **Mehrheitspartei** - form an SPD-only majority government. ?]
 
