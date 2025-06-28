@@ -31,7 +31,7 @@ subtitle: Brandt supports the idea of the European Union.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if foreign_minister_party != "SPD" : The SPD does not have the foreign ministry. ?]
 view-if: reparations <= -2 and eu_progress < 2 and eu = 0
 choose-if: west_relation >= 5 and east_relation >= 4 and spd_in_government and foreign_minister_party == "SPD"
-on-arrival: eu_progress += 2; west_relation += 1; east_relation += 1;
+on-arrival: advisor_action_timer = 6; eu_progress += 2; west_relation += 1; east_relation += 1;
 
 We have made huge steps forward to the construction of a European Union.
 
