@@ -1,1 +1,44 @@
-f
+title: Willy Brandt
+is-pinned-card: true 
+tags: advisor, left
+card-image: img/portraits/BrandtWilly.jpg
+new-page: true
+view-if: brandt_advisor = 1
+
+= Willy Brandt
+
+
+Brandt is a new but very talented member of the socialdemocratic party. He is a big supporter of a socialliberal coalition, the idea of a European Union and a supporter of the democratic system.
+
+- @coalition
+- @europeanunion
+- @snap_election
+- @root: Return to main
+
+@coalition
+title: Negotiating with the Coalition
+subtitle: Brandt can improve our relationships with our coalition partners.
+choose-if: advisor_action_timer <= 0 and spd_in_government = 1
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not spd_in_government: The SPD is not in government. ?]
+on-arrival: advisor_action_timer = 6; coalition_dissent -= 1 if spd_in_government = 1 and coalition_dissent > 0; ddp_relation += 15;
+
+We have improved our relations with the [+ ddp_name +] and reduced tensions with the coalition.
+
+
+@europeanunion
+title: Building the European Union
+subtitle: Brandt supports the idea of the European Union.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not spd_toleration: The SPD is not in toleration. ?]
+choose-if: spd_in_government = 1 and 
+on-arrival: 
+
+We have made steps forward to the construction of a European Union.
+
+@snap_election
+title: Snap Election
+subtitle: Call a snap election.
+unavailable-subtitle: [? if chancellor != "Brandt" : Brandt must be Chancellor. ?][? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer == 0 and chancellor == "Brandt"
+on-arrival: advisor_action_timer = 6; next_election_time = time + 3 if next_election_time > time+3; next_election_month = month + 3 if next_election_time >= time+3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
+
+We have called for new elections, set for [+ next_election_month : month +] [+ next_election_year +].
