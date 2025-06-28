@@ -3,8 +3,6 @@ is-pinned-card: true
 tags: advisor, left
 card-image: img/portraits/BrandtWilly.jpg
 new-page: true
-choose-if: year >= 1930
-unavailable-subtitle: [? if year < 1930 : Brandt is not yet in the Party, but maybe soon. ?]
 view-if: brandt_advisor = 1
 
 = Willy Brandt
