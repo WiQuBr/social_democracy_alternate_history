@@ -962,9 +962,24 @@ We have enough votes to form a "Socialliberal Coalition" government consisting o
 Who should be the chancellor?
 
 - @muller
-- @braun
+- @braun_socialliberal
 - @breitscheid_coalition_chancellor
 - @wels
+- @brandt
+
+@braun_socialliberal
+title: Otto Braun for Chancellor
+subtitle: Braun is very popular and the [+ ddp_name +] does not have a big problem with it, but they want more ministries. 
+on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; leverage -= 5
+go-to: ministries
+
+@brandt
+title: Willy Brandt for Chancellor
+subtitle: Brandt is a new member but very talented. Perhaps we try it with him as chancellor!
+view-if: brandt_advisor == 1 and eu == 1 and presidential_powers = 1
+on-arrival: chancellor = "Brandt"; chancellor_party = "SPD";
+go-to: ministries
+achievement: grand_socialliberal_coalition
 
 @grand_coalition
 title: We can form a Grand Coalition.
