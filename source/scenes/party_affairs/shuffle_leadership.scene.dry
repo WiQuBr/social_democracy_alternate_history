@@ -441,13 +441,20 @@ Antonie Pfülf is now an advisor.
 
 # left
 
+@add_brandt_locked
+title: Willy Brandt
+subtitle: Brandt is not yet in the Party, but maybe soon.
+is-card: true
+card-image: img/portraits/BrandtWilly.jpg
+view-if: brandt_advisor == 0 and year < 1930
+go-to: advisor_menu
+
 @add_brandt
 title: Willy Brandt
 subtitle: Willy Brandt is a new member of our party, may he is helpful. {!<br><br>!}[? if difficulty < 0 : Actions - Negotiating with the Coalition ?]
 is-card: true
 card-image: img/portraits/BrandtWilly.jpg
 view-if: brandt_advisor == 0 and n_advisors < 3 and left_split == 0 and year >= 1930
-unavailable-subtitle: Brandt is not yet in the Party, but maybe soon.
 on-arrival: brandt_advisor = 1; n_advisors += 1; left_strength += 5
 go-to: advisor_menu
 tags: left_advisor
