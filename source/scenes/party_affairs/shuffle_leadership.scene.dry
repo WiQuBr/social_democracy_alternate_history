@@ -447,7 +447,7 @@ subtitle: Willy Brandt is a new member of our party, may he is helpful. {!<br><b
 is-card: true
 card-image: img/portraits/BrandtWilly.jpg
 view-if: brandt_advisor == 0 and n_advisors < 3 and left_split == 0 and year >= 1930
-unavailable-subtitle: [? if year < 1930 : Brandt is not yet in the Party, but maybe soon. ?]
+unavailable-subtitle: Brandt is not yet in the Party, but maybe soon.
 on-arrival: brandt_advisor = 1; n_advisors += 1; left_strength += 5
 go-to: advisor_menu
 tags: left_advisor
