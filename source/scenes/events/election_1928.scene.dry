@@ -979,7 +979,7 @@ subtitle: Brandt is a new member but very talented. Perhaps we try it with him a
 view-if: brandt_advisor == 1 and eu == 1 and presidential_powers = 1
 on-arrival: chancellor = "Brandt"; chancellor_party = "SPD";
 go-to: ministries
-achievement: grand_socialliberal_coalition
+achievement: federalrepublican_socialliberal_coalition
 
 @grand_coalition
 title: We can form a Grand Coalition.
