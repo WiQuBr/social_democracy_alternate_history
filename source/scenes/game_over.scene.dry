@@ -356,7 +356,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_socialliberal_coalition: **Sozialliberale Koalition** - form a Socialliberal coalition. ?]
 
-[? if game_achievement_federalrepublican_socialliberal_coalition: **Bundesdeutsche Sozialliberale Koalition** - form a Socialliberal coalition and elect Willy Brandt as Chancellor.. ?]
+[? if game_achievement_federalrepublican_socialliberal_coalition: **Bundesdeutsche Sozialliberale Koalition** - form a Socialliberal coalition and elect Willy Brandt as Chancellor. ?]
 
 [? if game_achievement_majority_party: **Mehrheitspartei** - form an SPD-only majority government. ?]
 
@@ -467,7 +467,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_socialliberal_coalition: **Sozialliberale Koalition** - form a Socialliberal coalition. ?]
 
-[? if achievement_federalrepublican_socialliberal_coalition: **Bundesdeutsche Sozialliberale Koalition** - form a Socialliberal coalition and elect Willy Brandt as Chancellor.. ?]
+[? if achievement_federalrepublican_socialliberal_coalition: **Bundesdeutsche Sozialliberale Koalition** - form a Socialliberal coalition and elect Willy Brandt as Chancellor. ?]
 
 [? if achievement_majority_party: **Mehrheitspartei** - form an SPD-only majority government. ?]
 
@@ -576,7 +576,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if not achievement_socialliberal_coalition: **Sozialliberale Koalition** - form a Socialliberal coalition. ?]
 
-[? if not achievement_federalrepublican_socialliberal_coalition: **Bundesdeutsche Sozialliberale Koalition** - form a Socialliberal coalition and elect Willy Brandt as Chancellor.. ?]
+[? if not achievement_federalrepublican_socialliberal_coalition: **Bundesdeutsche Sozialliberale Koalition** - form a Socialliberal coalition and elect Willy Brandt as Chancellor. ?]
 
 [? if not achievement_majority_party: **Mehrheitspartei** - form an SPD-only majority government. ?]
 
