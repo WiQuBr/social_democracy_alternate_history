@@ -151,6 +151,15 @@ Woytinsky has been removed as an advisor. The Labor faction disapproves.
 
 # left
 
+@remove_brandt
+title: Remove Brandt
+view-if: brandt_advisor = 1
+tags: remove_advisor
+on-arrival: brandt_advisor = 0; left_dissent += 5; n_advisors -= 1
+go-to: rm_main
+
+Brandt has been removed as an advisor. The Leftist faction disapproves.
+
 @remove_levi
 title: Remove Levi
 view-if: levi_advisor = 1
@@ -431,6 +440,21 @@ Antonie Pfülf is now an advisor.
 
 
 # left
+
+choose-if: year >= 1930
+unavailable-subtitle: [? if year < 1930 : Brandt is not yet in the Party, but maybe soon. ?]
+
+@add_brandt
+title: Willy Brandt
+subtitle: Willy Brandt is a new member of our party, may he is helpful. {!<br><br>!}[? if difficulty < 0 : Actions - Negotiating with the Coalition ?]
+is-card: true
+card-image: img/portraits/BrandtWilly.jpg
+view-if: brandt_advisor = 0 and n_advisors < 3 and left_split = 0
+on-arrival: brandt_advisor = 1; n_advisors += 1; left_strength += 5
+go-to: advisor_menu
+tags: left_advisor
+
+Willy Brandt is now an advisor.
 
 @add_levi
 title: Paul Levi
