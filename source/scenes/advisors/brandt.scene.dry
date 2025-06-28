@@ -3,6 +3,8 @@ is-pinned-card: true
 tags: advisor, left
 card-image: img/portraits/BrandtWilly.jpg
 new-page: true
+choose-if: year >= 1930
+unavailable-subtitle: [? if year < 1930 : Brandt is not yet in the Party, but maybe soon. ?]
 view-if: brandt_advisor = 1
 
 = Willy Brandt
@@ -28,12 +30,12 @@ We have improved our relations with the [+ ddp_name +] and reduced tensions with
 @europeanunion
 title: Building the European Union
 subtitle: Brandt supports the idea of the European Union.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not spd_toleration: The SPD is not in toleration. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? foreign_minister_party != "SPD" : The SPD does not have the foreign ministry. ?]
 view-if: reparations <= -2 and eu_progress < 2 and eu = 0
-choose-if: west_relation >= 5 and east_relation >= 4 and spd_in_government = 1 and 
-on-arrival: eu_progress += 1; west_relation += 1
+choose-if: west_relation >= 5 and east_relation >= 4 and spd_in_government and foreign_minister_party == "SPD"
+on-arrival: eu_progress += 2; west_relation += 1; east_relation += 1;
 
-We have made steps forward to the construction of a European Union.
+We have made huge steps forward to the construction of a European Union.
 
 @snap_election
 title: Snap Election
