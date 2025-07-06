@@ -47,7 +47,7 @@ By transferring resources to our coalition partners, we can reduce their dissent
 choose-if: (in_socialliberal_coalition and communist_coalition >= 3 and kpd_relation >= 50 and kpd_r >= ddp_r)
 view-if: tried_supporting_kpd = 0
 on-arrival: tried_supporting_kpd = 1
-unavailable-subtitle: [? if communist_coalition < 3 : The KPD won't take part in parliamentary government. ?] [? if kpd_relation < 50 : The KPD is not friendly enough with us. ?] [? if (in_socialliberal_coalition and kpd_r < ddp_r) ?]
+unavailable-subtitle: [? if communist_coalition < 3 : The KPD won't take part in parliamentary government. ?] [? if kpd_relation < 50 : The KPD is not friendly enough with us. ?] [? if (in_socialliberal_coalition and kpd_r < ddp_r): The KPD does not have enough votes. ?]
 
 If the Communists abstain, then we essentially can maintain a minority government[? if president=="Hindenburg":, although it would be very difficult to make policy without the support of President Hindenburg, which we do not have ?]. If this happens, then we will own a massive debt to the KPD. This could lead to broader cooperation in the future, for better or for worse.
 
@@ -60,7 +60,7 @@ go-to: support_kpd_socialliberal if in_socialliberal_coalition
 
 # TODO: this can form an infinite loop
 
-The KPD is not interested in a "toleration" arrangement; they will only support us if they can participate in the government as part of a coalition. And, if this toleration agreement happens, the right-wing parties will not be inclined to support us. 
+The KPD is not interested in a "toleration" arrangement; they will only support us if they can participate in the government as part of a coalition. And, if this toleration agreement happens, the [+ ddp_name +] will not be inclined to support us. 
 
 @support_kpd_socialliberal
 
