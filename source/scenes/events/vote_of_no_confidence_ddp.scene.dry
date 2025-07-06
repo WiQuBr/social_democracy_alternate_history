@@ -56,7 +56,7 @@ If the Communists abstain, then we essentially can maintain a minority governmen
 
 @support_kpd_2
 on-arrival: communist_coalition += 1; workers_kpd += 3; kpd_relation += 5
-go-to: support_kpd_socialliberal if in_socialliberal_coalition;
+go-to: support_kpd_socialliberal if in_socialliberal_coalition
 
 # TODO: this can form an infinite loop
 
