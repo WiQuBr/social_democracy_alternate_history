@@ -1,6 +1,6 @@
 title: Frahm changes his name...
 subititle: Herbert Frahm changes his name to Willy Brandt.
-view if: year == 1933 and month >= 3 and left_split == 0 and (nsdap_r >= 25 and nazi_urgency > 1) and scandinavia_contacts == 2
+view if: year == 1933 and month >= 3 and left_split == 0 and nsdap_r >= 25 and nazi_urgency > 1 and scandinavia_contacts == 2
 frequency: 1000
 max-visits: 1
 tags: event
