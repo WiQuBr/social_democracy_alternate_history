@@ -1,0 +1,12 @@
+title: Frahm changes his name...
+subititle: Herbert Frahm changes his name to Willy Brandt.
+view if: year == 1933 and month >= 3 and left_split == 0 and (nsdap_r >= 25 and nazi_urgency > 1) and scandinavia_contacts = 2
+frequency: 1000
+max-visits: 1
+tags: event
+on-arrival: brandt_name = "Willy Brandt"; frahm_brandt_seen = 1
+new-page: true
+
+= Herbert Frahm changes his name to Willy Brandt!
+
+Herbert Ernst Karl Frahm has build structures in Oslo for an potential exil, when the fascist NSDAP takes power in germany. Because of the rising fascist danger he is now secretly called Willy Brandt because he will change his identity, when Hitler takes power. Hopefully, we can stop the Nazis from taking power, but it is not bad, to be prepared.
