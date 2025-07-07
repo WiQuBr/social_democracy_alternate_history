@@ -35,7 +35,6 @@ on-arrival: coalition_dissent = 0; spd_prussia = 0; prussian_government = "I"; r
 Fine. We no longer control the government of Prussia. The vote has been called off.
 
 @resources
-view-if: secularized = 0
 choose-if: resources >= 3
 unavailable-subtitle: We do not have enough resources.
 subtitle: -3 resources
