@@ -976,7 +976,7 @@ go-to: ministries
 @brandt
 title: Willy Brandt for Chancellor
 subtitle: Brandt is a new member but very talented. Perhaps we try it with him as chancellor!
-view-if: brandt_advisor == 1 and eu == 1 and presidential_powers = 1
+view-if: brandt_advisor == 1 and eu == 1 and presidential_powers = 1 and frahm_brandt_seen = 1
 on-arrival: chancellor = "Brandt"; chancellor_party = "SPD";
 go-to: ministries
 achievement: federalrepublican_socialliberal_coalition
