@@ -1,11 +1,12 @@
-title: Willy Brandt joins the SPD!
+title: Herbert Frahm joins the SPD!
 view-if: year == 1930
 frequency: 1000
 max-visits: 1
 tags: event
+on-arrival: brandt_name = "Herbert Frahm"; frahm_brandt_seen = 0
 new-page: true
 face-image: img/portraits/BrandtWilly.jpg
 
-= Willy Brandt joins the SPD
+= Herbert Frahm joins the SPD
 
-Willy Brandt has joined the SPD! He is a very interesting figure and could be a great leader of our party! We should have an eye on him!
+Herbert Ernst Karl Frahm has joined the SPD! He is a very interesting figure and could be a great leader of our party! We should have an eye on him!
