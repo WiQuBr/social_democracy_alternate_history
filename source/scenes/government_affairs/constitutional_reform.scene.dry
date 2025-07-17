@@ -1,7 +1,7 @@
 title: Constitutional Reform
 new-page: true
 is-card: true
-view-if: spd_in_government = 1 and justice_minister_party = "SPD" and constitutional_reform_timer = 0 and judicial_reform >= 4 and neorevisionism and ((in_weimar_coalition) or (in_spd_majority) or (in_socialliberal_coalition) or (in_left_front) or (in_popular_front)) and constitutional_reform < 3
+view-if: spd_in_government = 1 and justice_minister_party = "SPD" and constitutional_reform_timer = 0 and judicial_reform >= 4 and neorevisionism and ((in_weimar_coalition) or (in_spd_majority) or (in_socialliberal_coalition) or (in_left_front) or (in_popular_front)) and constitutional_reform < 4
 frequency: 25
 on-arrival: month_actions += 1; constitutional_reform_timer += 12; pass_threshold = 0.51; pass_threshold = 0.6 if pro_republic < 65;
 card-image: img/portraits/RadbruchGustav.jpg
@@ -26,10 +26,10 @@ A constitutional reform requires either a two-thirds supermajority in the Reichs
 - @vote_threshold: Change the vote threshold.
 - @constructive_vonc: Ban non-constructive votes of no confidence.
 - @presidential_powers: Reduce presidential powers.
+- @constitutional_bans: Allow the banning of anti-constitutional parties.
 - @as_is: Do not pursue constitutional reform.
 - @easy_discard
 - @cancel_advisor_action
-#- @constitutional_bans: Allow the banning of anti-constitutional parties.
 
 @vote_threshold
 subtitle: Change the vote threshold to 5% for parties to be represented in the Reichstag.
@@ -126,12 +126,31 @@ achievement: verfassungsreform
 
 We have successfully passed a constitutional amendment to limit presidential powers! Hopefully this results in a less authoritarian Germany.
 
-
-
 @constitutional_bans
+subtitle: Anti-constitutional parties should be banned to save our republic against autocratic movements.
+on-arrival: {!
+Q.reform_support = Q.spd_normalized + Q.ddp_normalized;
+if (Q.z_relation >= 30) {
+    Q.reform_support += Q.z_normalized - 0.03;
+}
+if (!Q.stresemann_dead) {
+    Q.reform_support += Q.dvp_normalized;
+}
+!}
+view-if: constitutional_bans_allowed == 0
 
-# Temporarily disable this for now - how would this interact with the already-extant law for the protection of the republic? This 
+[? if z_relation >= 30 : The Weimar Coalition parties, the [+ ddp_name +] and Center Party, support this reform, which will stop the fascist movement against our republic. ?] [? if z_relation < 30 : The [+ ddp_name +] supports this reform, but the Center Party does not trust us enough to support the constitutional referendum and they are warming to work with the NSDAP. ?] The more conservative and radical right-wing parties and the KPD are in opposition, because it could endanger their political goals of overcoming the Republic.
 
+- @constitutional_bans_2: Call a constitutional referendum to pass the reform!
+- @reforms_menu: See other reform options.
+
+@constitutional_bans_2
+choose-if: reform_support >= pass_threshold
+unavailable-subtitle: We do not have enough support for this policy. [? if pro_republic < 65 : We should have an additional margin for the referendum since we need a majority of voters, and many voters who do not support the republic will not participate. ?] [? if z_relation <= 30 : The Center Party does not trust us enough to support this policy. ?]
+on-arrival: constitutional_reform += 1; constitutional_bans_allowed = 1
+achievement: verfassungsreform
+
+We have succesfully passed a constitutional amendment to ban anti-constitutional parties! Hopefully this saves our democracy from the autocratic parties!
 
 @as_is
 go-to: root
