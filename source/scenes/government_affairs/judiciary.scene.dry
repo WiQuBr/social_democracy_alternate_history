@@ -17,6 +17,7 @@ The Judiciary is one of the most reactionary components of the government, along
 - @reform: Carry out substantial judicial reforms,
 - @minor_reforms: Carry out minor judicial reforms.
 - @as_is: Leave the judiciary as it is.
+- @ban_nsdap: We must consider banning the NSDAP.
 - @easy_discard
 - @cancel_advisor_action
 
@@ -35,3 +36,15 @@ We try to remove the most obviously biased and corrupt jurists, while leaving mo
 
 @as_is
 go-to: root
+
+@ban_nsdap
+view-if: constitutional_bans_allowed == 1 
+choose-if: investigate_far_right > 3 and hitler_deported == 1 and judical_reform > 2
+unavailable-subtitle: [? if investigate_far_right < 4 : We don't have enough evidence of their unconstitutionality. ?] [? if hitler_deported != 1 : The Nazis, with Hitler as their leader, are still too respected to ban their party. ?] [? if judical_reform < 3 : The judicary is still to reactionary to ban the NSDAP. ?]
+on-arrival: nsdap_banned = 1
+
+The NSDAP is finally banned, the threat from the Nazis to our democracy is finally away.
+
+
+
+
