@@ -40,7 +40,7 @@ go-to: root
 @ban_nsdap
 view-if: constitutional_bans_allowed == 1 
 choose-if: investigate_far_right > 3 and hitler_deported == 1 and judical_reform > 2
-unavailable-subtitle: [? if investigate_far_right < 4 : We don't have enough evidence of their unconstitutionality. ?] [? if hitler_deported != 1 : The Nazis, with Hitler as their leader, are still too respected to ban their party. ?] [? if judical_reform < 3 : The judicary is still to reactionary to ban the NSDAP. ?]
+unavailable-subtitle: [? if investigate_far_right < 4 : We don't have enough evidence of their unconstitutionality. ?] [? if hitler_deported != 1 : The Nazis, with Hitler as their leader, are still too respected to ban their party. ?] [? if judical_reform <= 2 : The judicary is still to reactionary to ban the NSDAP. ?]
 on-arrival: nsdap_banned = 1
 
 The NSDAP is finally banned, the threat from the Nazis to our democracy is finally away.
