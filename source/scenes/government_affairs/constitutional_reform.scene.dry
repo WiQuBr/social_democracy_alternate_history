@@ -139,6 +139,8 @@ if (!Q.stresemann_dead) {
 !}
 view-if: constitutional_bans_allowed == 0
 
+While party bans are formally possible under association law, this indirect approach is problematic from a rule-of-law perspective, as it treats political parties merely as private associations. A clear constitutional provision would provide a more appropriate legal foundation, aligning such measures with democratic principles and strengthening the republic’s defense on legitimate and transparent grounds.
+
 [? if z_relation >= 30 : The Weimar Coalition parties, the [+ ddp_name +] and Center Party, support this reform, which will stop the fascist movement against our republic. ?] [? if z_relation < 30 : The [+ ddp_name +] supports this reform, but the Center Party does not trust us enough to support the constitutional referendum and they are warming to work with the NSDAP. ?] The more conservative and radical right-wing parties and the KPD are in opposition, because it could endanger their political goals of overcoming the Republic.
 
 - @constitutional_bans_2: Call a constitutional referendum to pass the reform!
