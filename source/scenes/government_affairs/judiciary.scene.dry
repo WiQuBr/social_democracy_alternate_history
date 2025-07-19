@@ -18,6 +18,7 @@ The Judiciary is one of the most reactionary components of the government, along
 - @minor_reforms: Carry out minor judicial reforms.
 - @as_is: Leave the judiciary as it is.
 - @ban_nsdap: We must consider banning the NSDAP.
+- @ban_kpd: We must consider banning the KPD.
 - @easy_discard
 - @cancel_advisor_action
 
@@ -45,6 +46,12 @@ on-arrival: nsdap_banned = 1; workers_nsdap -= 2; new_middle_nsdap -= 3; old_mid
 
 The NSDAP is finally banned, the threat from the Nazis to our democracy is finally away.
 
+@ban_kpd
+view-if: constitutional_bans_allowed == 1
+choose-if: kpd_party_leader != "Conciliators"
+unavailable-subtitle: [? if kpd_party_leader = "Conciliators" : Because the conciliators control the party, the KPD cooperates with the Republic and turns away from anti-republican rhetoric, so that a ban cannot be legally justified. ?]
+on-arrival: kpd_banned = 1; workers_kpd -= 8; new_middle_kpd -= 3; old_middle_kpd -= 1; rural_kpd -= 2; unemployed_kpd -= 8; catholics_kpd;
 
+The KPD is finally banned, the threat from the Stalinists to our democracy and the socialdemocratic movement is finally away.
 
 
