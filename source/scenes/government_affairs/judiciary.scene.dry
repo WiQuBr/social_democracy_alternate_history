@@ -49,7 +49,7 @@ The NSDAP is finally banned, the threat from the Nazis to our democracy is final
 @ban_kpd
 view-if: constitutional_bans_allowed == 1
 choose-if: kpd_party_leader != "Conciliators"
-unavailable-subtitle: [? if kpd_party_leader = "Conciliators" : Because the conciliators control the party, the KPD cooperates with the Republic and turns away from anti-republican rhetoric, so that a ban cannot be legally justified. ?]
+unavailable-subtitle: [? if kpd_party_leader == "Conciliators" : Because the conciliators control the party, the KPD cooperates with the Republic and turns away from anti-republican rhetoric, so that a ban cannot be legally justified. ?]
 on-arrival: kpd_banned = 1; workers_kpd -= 8; new_middle_kpd -= 3; old_middle_kpd -= 1; rural_kpd -= 2; unemployed_kpd -= 8; catholics_kpd;
 
 The KPD is finally banned, the threat from the Stalinists to our democracy and the socialdemocratic movement is finally away.
