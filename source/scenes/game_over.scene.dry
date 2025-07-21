@@ -116,7 +116,7 @@ if ((Q.welfare > 0 && Q.judicial_reform >= 2 && Q.womens_work >= 1 && Q.family_l
 if (Q.nsdap_banned == 1 || Q.kpd_banned == 1) {
     this.achieve('banned_party');
 }
-}
+
 !}
 
 = End
