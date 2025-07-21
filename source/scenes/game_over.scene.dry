@@ -112,6 +112,10 @@ if ((Q.chancellor_party == "NSDAP" || Q.chancellor == "Hitler" || Q.president ==
 if ((Q.welfare > 0 && Q.judicial_reform >= 2 && Q.womens_work >= 1 && Q.family_law >= 1 && Q.upper_tax_rates > Q.lower_tax_rates && Q.works_councils > 0 && Q.eu > 0)) {
     this.achieve('heidelberger_programm');
 }
+// Parteiverbot - Ban an unsconstitutional Party.
+if (nsdap_banned == 1 or kpd_banned == 1)
+		this.achieve('banned_party');
+}
 !}
 
 = End
