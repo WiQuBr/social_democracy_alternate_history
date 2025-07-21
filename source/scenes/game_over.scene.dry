@@ -113,8 +113,8 @@ if ((Q.welfare > 0 && Q.judicial_reform >= 2 && Q.womens_work >= 1 && Q.family_l
     this.achieve('heidelberger_programm');
 }
 // Parteiverbot - Ban an unsconstitutional Party.
-if (nsdap_banned == 1 or kpd_banned == 1)
-		this.achieve('banned_party');
+if (nsdap_banned == 1 || kpd_banned == 1)
+    this.achieve('banned_party');
 }
 !}
 
