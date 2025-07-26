@@ -158,7 +158,7 @@ tags: remove_advisor
 on-arrival: brandt_advisor = 0; left_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-[? if frahm_brandt_seen == 1 : Brandt ?] [? if frahm_brandt_seen == 0 : Frahm ?] has been removed as an advisor. The Leftist faction disapproves.
+[? if frahm_brandt_seen == 1 : Brandt has been removed as an advisor. ?] [? if frahm_brandt_seen == 0 : Frahm has been removed as an advisor. ?] The Leftist faction disapproves.
 
 @remove_levi
 title: Remove Levi
