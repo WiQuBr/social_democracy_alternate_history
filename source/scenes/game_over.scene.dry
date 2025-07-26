@@ -437,6 +437,8 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_banned_kpd : **Hammer und Verbot** - Ban the KPD. ?]
 
+[? if game_achievement_wels_rede : **Freiheit und Leben kann man uns nehmen, die Ehre nicht!** - Hitler takes Power, but Otto Wels holds an unforgettable speech. ?]
+
 [? if game_achievement_stolperstein: **Stolperstein** - we lost, but history might memorialize us... ?]
 
 
@@ -554,6 +556,8 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_banned_kpd : **Hammer und Verbot** - Ban the KPD. ?]
 
+[? if achievement_wels_rede : **Freiheit und Leben kann man uns nehmen, die Ehre nicht!** - Hitler takes Power, but Otto Wels holds an unforgettable speech. ?]
+
 [? if achievement_stolperstein: **Stolperstein** - we lost, but history might memorialize us... ?]
 
 
@@ -668,6 +672,8 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 [? if not achievement_banned_nsdap : **Entnazifizierung** - Ban the NSDAP. ?]
 
 [? if not achievement_banned_kpd : **Hammer und Verbot** - Ban the KPD. ?]
+
+[? if not achievement_wels_rede : **Freiheit und Leben kann man uns nehmen, die Ehre nicht!** - Hitler takes Power, but Otto Wels holds an unforgettable speech. ?]
 
 [? if not achievement_stolperstein: **Stolperstein** - we lost, but history might memorialize us... ?]
 
