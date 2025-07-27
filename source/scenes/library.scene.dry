@@ -210,7 +210,7 @@ go-to: menu
 
 Current relations: [+ z_relation : relationships +]
 
-**[+ ddp_name +]** – *[? if ddp_name != "DStP" : Deutsche Demokratische Partei ?][? if ddp_name = "DStP" : Deutsche Staatspartei ?]* [? if ddp_name != "DStP" : (German Democratic Party) ?][? if ddp_name = "DStP" : (German State Party) ?] – a center-left liberal party, popular among the intelligentsia and educated middle class. They have often been in coalitions with us. [? if year >= 1930 : They have recently reformed themselves as the German State Party (DStP). ?]
+**[? if ddp_name != "DStP" : DDP ?][? if ddp_name = "DStP" : DStP ?]** – *[? if ddp_name != "DStP" : Deutsche Demokratische Partei ?][? if ddp_name = "DStP" : Deutsche Staatspartei ?]* [? if ddp_name != "DStP" : (German Democratic Party) ?][? if ddp_name = "DStP" : (German State Party) ?] – a center-left liberal party, popular among the intelligentsia and educated middle class. They have often been in coalitions with us. [? if year >= 1930 : They have recently reformed themselves as the German State Party (DStP). ?]
 
 Current relations: [+ ddp_relation : relationships +]
 
