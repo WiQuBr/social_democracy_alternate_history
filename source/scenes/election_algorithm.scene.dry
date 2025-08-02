@@ -25,7 +25,6 @@ var redistribution_rules = {
                 base.zentrum = (base.zentrum || 0) + 0.2;
             }
 
-            // Normalisieren
             let total = 0;
             for (let t in base) total += base[t];
             for (let t in base) base[t] /= total;
@@ -62,7 +61,9 @@ var redistribution_rules = {
         get_rules: function(Q) {
             let base;
 
-            if (!Q.nsdap_banned) {
+            if (Q.sapd_formed === 1) {
+                base = { sapd: 0.5, spd: 0.3, other: 0.2 };
+            } else if (!Q.nsdap_banned) {
                 base = { spd: 0.6, other: 0.3 };
             } else {
                 base = { spd: 0.75, other: 0.15 };
@@ -90,9 +91,10 @@ for (var banned of banned_parties) {
             var original = Q[c + '_' + banned];
             if (!original || original === 0) continue;
 
-            var rules = redistribution_rules[banned].get_rules(Q, c);
+            var rules = redistribution_rules[banned].get_rules(Q);
 
             for (var t in rules) {
+                if (!Q[c + '_' + t]) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * rules[t];
             }
 
@@ -122,14 +124,8 @@ var total_support = 0;
 for (var party of Q.parties) {
     var party_support = 0;
     for (var c of Q.classes) {
-        // but this version is somewhat more entertaining and allows for wilder swings in votes.
-        // the other option basically necessitates a multi-class strategy. while the first option allows for a working-class-only strategy.
         if (Q.old_demographics) {
-            // okay i'm pretty sure this is wrong, and the hard version is correct
-            // basically this allows for "spillover" effects in other demographics.
-            // so you can campaign among say the workers and 
             party_support += Q[c]*Q[c+'_'+party];
-            // However, there should be a cap on how much party support you can get in a certain demo.
         } else  {
             party_support += Q[c]*Q[c+'_'+party+'_normalized'];
         }
@@ -137,10 +133,9 @@ for (var party of Q.parties) {
     Q[party + '_support'] = party_support;
     total_support += party_support;
 }
+
 // 2. normalize support (fraction)
 // 3. Round to integers
-// TODO: round to 1 decimal instead of rounding to integers
-// to do that, we multiply party_normalized*1000 and divide the rounded number by 10.
 for (var party of Q.parties) {
     Q[party+'_normalized'] = Q[party + '_support']/total_support;
     Q[party+'_votes_dec'] = Math.round(Q[party+'_normalized']*1000)/10;
@@ -151,10 +146,6 @@ for (var party of Q.parties) {
         Q[party+'_votes'] = Math.round(Q[party+'_normalized']*100);
         Q[party + '_votes_disp'] = Q[party+'_votes_dec'].toFixed(1);
     }
-    //Q[party+'_votes'] = Q[party+'_votes_dec'];
-    // display
 }
 !}
 go-to: jumpScene
-
-# note: this is a helpful utility to deal with elections and so on.
