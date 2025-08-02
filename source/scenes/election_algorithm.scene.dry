@@ -1,14 +1,14 @@
 title: Election
 on-arrival: |
     // ==========================
-    // Stimmenumverteilung bei Parteiverboten
+    // Redistribution of votes if parties are banned
     // ==========================
 
     var banned_parties = ['nsdap', 'kpd', 'dnvp'];
 
     var redistribution_rules = {
         nsdap: {
-            get_rules: function(Q) {
+            get_rules: (Q) => {
                 let base;
                 if (!Q.dnvp_banned && !Q.dvp_banned) {
                     base = { dnvp: 0.5, dvp: 0.2, other: 0.3 };
@@ -30,7 +30,7 @@ on-arrival: |
         },
 
         dnvp: {
-            get_rules: function(Q) {
+            get_rules: (Q) => {
                 let base;
                 if (!Q.dvp_banned) {
                     base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
@@ -50,7 +50,7 @@ on-arrival: |
         },
 
         kpd: {
-            get_rules: function(Q) {
+            get_rules: (Q) => {
                 let base;
                 if (Q.sapd_formed == 1) {
                     base = { sapd: 0.5, spd: 0.3, other: 0.2 };
@@ -72,7 +72,7 @@ on-arrival: |
         }
     };
 
-    // Stimmen umverteilen
+    // Redistribute votes for each banned party
     for (var banned of banned_parties) {
         if (Q[banned + '_banned']) {
             for (var c of Q.classes) {
@@ -91,34 +91,34 @@ on-arrival: |
         }
     }
 
-// calculate normalized class voting amounts (0 to 100)
+    // Calculate normalized class voting amounts (0 to 100)
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
-            if (Q[c+'_'+party] < 0) {
-                Q[c+'_'+party] = 0;
+            if (Q[c + '_' + party] < 0) {
+                Q[c + '_' + party] = 0;
             }
-            class_votes += Q[c+'_'+party];
+            class_votes += Q[c + '_' + party];
         }
         for (var party of Q.parties) {
-            Q[c + '_' + party + '_normalized'] = 100 * Q[c+'_'+party] / class_votes;
-            Q[c + '_' + party + '_display'] = Math.round(100 * Q[c+'_'+party] / class_votes);
+            Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
+            Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
         }
     }
 
-// 1. calculate support for each of the parties
+    // 1. Calculate total party support
     var total_support = 0;
     for (var party of Q.parties) {
         var party_support = 0;
         for (var c of Q.classes) {
-        // but this version is somewhat more entertaining and allows for wilder swings in votes.
-        // the other option basically necessitates a multi-class strategy. while the first option allows for a working-class-only strategy.
+            // but this version is somewhat more entertaining and allows for wilder swings in votes.
+            // the other option basically necessitates a multi-class strategy. while the first option allows for a working-class-only strategy.
             if (Q.old_demographics) {
-            // okay i'm pretty sure this is wrong, and the hard version is correct
-            // basically this allows for "spillover" effects in other demographics.
-            // so you can campaign among say the workers and 
+                // okay i'm pretty sure this is wrong, and the hard version is correct
+                // basically this allows for "spillover" effects in other demographics.
+                // so you can campaign among say the workers and 
                 party_support += Q[c] * Q[c + '_' + party];
-            // However, there should be a cap on how much party support you can get in a certain demo.
+                // However, there should be a cap on how much party support you can get in a certain demo.
             } else {
                 party_support += Q[c] * Q[c + '_' + party + '_normalized'];
             }
@@ -127,10 +127,10 @@ on-arrival: |
         total_support += party_support;
     }
 
-// 2. normalize support (fraction)
-// 3. Round to integers
-// TODO: round to 1 decimal instead of rounding to integers
-// to do that, we multiply party_normalized*1000 and divide the rounded number by 10.
+    // 2. Normalize support
+    // 3. Round to integers (or decimals if enabled)
+    // TODO: round to 1 decimal instead of rounding to integers
+    // to do that, we multiply party_normalized * 1000 and divide the rounded number by 10.
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
         Q[party + '_votes_dec'] = Math.round(Q[party + '_normalized'] * 1000) / 10;
@@ -144,3 +144,5 @@ on-arrival: |
     }
 
 go-to: jumpScene
+
+# note: this is a helpful utility to deal with elections and so on.
