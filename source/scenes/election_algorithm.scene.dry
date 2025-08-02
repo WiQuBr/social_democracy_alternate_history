@@ -1,136 +1,153 @@
 title: Election
 on-arrival: |
-    // Redistribution of votes for banned parties
-    var banned_parties = ['nsdap', 'kpd', 'dnvp'];
+// Defensive Initialisierung aller erwarteten Q-Properties
+if (Q.dnvp_banned === undefined) Q.dnvp_banned = false;
+if (Q.dvp_banned === undefined) Q.dvp_banned = false;
+if (Q.nsdap_banned === undefined) Q.nsdap_banned = false;
+if (Q.sapd_formed === undefined) Q.sapd_formed = 0;
+if (typeof Q.electoral_threshold !== 'number') Q.electoral_threshold = 0;
+if (!Array.isArray(Q.classes)) Q.classes = [];
+if (!Array.isArray(Q.parties)) Q.parties = [];
 
-    var redistribution_rules = {
-        nsdap: {
-            get_rules: function(Q) {
-                let base;
-                if (!Q.dnvp_banned && !Q.dvp_banned) {
-                    base = { dnvp: 0.5, dvp: 0.2, other: 0.3 };
-                } else if (!Q.dvp_banned) {
-                    base = { dvp: 0.5, zentrum: 0.2, other: 0.3 };
-                } else {
-                    base = { zentrum: 0.4, other: 0.6 };
-                }
-                if (Q.electoral_threshold >= 5) {
-                    base.other *= 0.6;
-                    base.spd = (base.spd || 0) + 0.2;
-                    base.zentrum = (base.zentrum || 0) + 0.2;
-                }
-                let total = 0;
-                for (let t in base) total += base[t];
-                for (let t in base) base[t] /= total;
-                return base;
-            }
-        },
+// Redistribution of votes for banned parties
+var banned_parties = ['nsdap', 'kpd', 'dnvp'];
 
-        dnvp: {
-            get_rules: function(Q) {
-                let base;
-                if (!Q.dvp_banned) {
-                    base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
-                } else {
-                    base = { zentrum: 0.6, other: 0.4 };
-                }
-                if (Q.electoral_threshold >= 5) {
-                    base.other *= 0.6;
-                    base.zentrum += 0.2;
-                    base.spd = (base.spd || 0) + 0.2;
-                }
-                let total = 0;
-                for (let t in base) total += base[t];
-                for (let t in base) base[t] /= total;
-                return base;
-            }
-        },
-
-        kpd: {
-            get_rules: function(Q) {
-                let base;
-                if (Q.sapd_formed === 1) {
-                    base = { sapd: 0.5, spd: 0.3, other: 0.2 };
-                } else if (!Q.nsdap_banned) {
-                    base = { spd: 0.6, other: 0.3 };
-                } else {
-                    base = { spd: 0.75, other: 0.15 };
-                }
-                if (Q.electoral_threshold >= 5) {
-                    base.other *= 0.6;
-                    base.spd += 0.1;
-                    base.zentrum = (base.zentrum || 0) + 0.1;
-                }
-                let total = 0;
-                for (let t in base) total += base[t];
-                for (let t in base) base[t] /= total;
-                return base;
-            }
-        }
-    };
-
-    // Perform vote redistribution
-    for (var banned of banned_parties) {
-        if (Q[banned + '_banned']) {
-            for (var c of Q.classes) {
-                var original = Q[c + '_' + banned];
-                if (!original || original === 0) continue;
-
-                var rules = redistribution_rules[banned].get_rules(Q);
-
-                for (var t in rules) {
-                    var key = c + '_' + t;
-                    if (typeof Q[key] !== 'number') Q[key] = 0;
-                    Q[key] += original * rules[t];
-                }
-
-                Q[c + '_' + banned] = 0;
-            }
-        }
-    }
-
-    // calculate normalized class voting amounts (0 to 100)
-    for (var c of Q.classes) {
-        var class_votes = 0;
-        for (var party of Q.parties) {
-            if (Q[c + '_' + party] < 0) {
-                Q[c + '_' + party] = 0;
-            }
-            class_votes += Q[c + '_' + party];
-        }
-        for (var party of Q.parties) {
-            Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
-            Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
-        }
-    }
-
-    // 1. calculate support for each of the parties
-    var total_support = 0;
-    for (var party of Q.parties) {
-        var party_support = 0;
-        for (var c of Q.classes) {
-            if (Q.old_demographics) {
-                party_support += Q[c] * Q[c + '_' + party];
+var redistribution_rules = {
+    nsdap: {
+        get_rules: function(Q) {
+            let base;
+            if (!Q.dnvp_banned && !Q.dvp_banned) {
+                base = { dnvp: 0.5, dvp: 0.2, other: 0.3 };
+            } else if (!Q.dvp_banned) {
+                base = { dvp: 0.5, zentrum: 0.2, other: 0.3 };
             } else {
-                party_support += Q[c] * Q[c + '_' + party + '_normalized'];
+                base = { zentrum: 0.4, other: 0.6 };
             }
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.spd = (base.spd || 0) + 0.2;
+                base.zentrum = (base.zentrum || 0) + 0.2;
+            }
+            let total = 0;
+            for (let t in base) total += base[t];
+            for (let t in base) base[t] /= total;
+            return base;
         }
-        Q[party + '_support'] = party_support;
-        total_support += party_support;
+    },
+
+    dnvp: {
+        get_rules: function(Q) {
+            let base;
+            if (!Q.dvp_banned) {
+                base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
+            } else {
+                base = { zentrum: 0.6, other: 0.4 };
+            }
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.zentrum += 0.2;
+                base.spd = (base.spd || 0) + 0.2;
+            }
+            let total = 0;
+            for (let t in base) total += base[t];
+            for (let t in base) base[t] /= total;
+            return base;
+        }
+    },
+
+    kpd: {
+        get_rules: function(Q) {
+            let base;
+            if (Q.sapd_formed === 1) {
+                base = { sapd: 0.5, spd: 0.3, other: 0.2 };
+            } else if (!Q.nsdap_banned) {
+                base = { spd: 0.6, other: 0.3 };
+            } else {
+                base = { spd: 0.75, other: 0.15 };
+            }
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.spd += 0.1;
+                base.zentrum = (base.zentrum || 0) + 0.1;
+            }
+            let total = 0;
+            for (let t in base) total += base[t];
+            for (let t in base) base[t] /= total;
+            return base;
+        }
     }
-    // 2. normalize support (fraction)
-    // 3. Round to integers
+};
+
+// Perform vote redistribution
+for (var banned of banned_parties) {
+    if (Q[banned + '_banned']) {
+        for (var c of Q.classes) {
+            var original = Q[c + '_' + banned];
+            if (!original || original === 0) continue;
+
+            var rules = redistribution_rules[banned].get_rules(Q);
+
+            for (var t in rules) {
+                var key = c + '_' + t;
+                if (typeof Q[key] !== 'number') Q[key] = 0;
+                Q[key] += original * rules[t];
+            }
+
+            Q[c + '_' + banned] = 0;
+        }
+    }
+}
+
+// calculate normalized class voting amounts (0 to 100)
+for (var c of Q.classes) {
+    var class_votes = 0;
     for (var party of Q.parties) {
-        Q[party + '_normalized'] = Q[party + '_support'] / total_support;
-        Q[party + '_votes_dec'] = Math.round(Q[party + '_normalized'] * 1000) / 10;
-        if (Q.use_decimals) {
-            Q[party + '_votes'] = Q[party + '_votes_dec'];
-            Q[party + '_votes_disp'] = Q[party + '_votes'];
+        if (Q[c + '_' + party] < 0) {
+            Q[c + '_' + party] = 0;
+        }
+        class_votes += Q[c + '_' + party];
+    }
+    // Prevent division by zero
+    if (class_votes === 0) class_votes = 1;
+
+    for (var party of Q.parties) {
+        Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
+        Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
+    }
+}
+
+// 1. calculate support for each of the parties
+var total_support = 0;
+for (var party of Q.parties) {
+    var party_support = 0;
+    for (var c of Q.classes) {
+        if (Q.old_demographics) {
+            party_support += Q[c] * Q[c + '_' + party];
         } else {
-            Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
-            Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
+            party_support += Q[c] * Q[c + '_' + party + '_normalized'];
         }
     }
+    Q[party + '_support'] = party_support;
+    total_support += party_support;
+}
+
+// Prevent division by zero if no support
+if (total_support === 0) total_support = 1;
+
+// 2. normalize support (fraction)
+// 3. Round to integers
+for (var party of Q.parties) {
+    Q[party + '_normalized'] = Q[party + '_support'] / total_support;
+    Q[party + '_votes_dec'] = Math.round(Q[party + '_normalized'] * 1000) / 10;
+    if (Q.use_decimals) {
+        Q[party + '_votes'] = Q[party + '_votes_dec'];
+        Q[party + '_votes_disp'] = Q[party + '_votes'];
+    } else {
+        Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
+        Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
+    }
+}
+
 go-to: jumpScene
 
 # note: this is a helpful utility to deal with elections and so on.
