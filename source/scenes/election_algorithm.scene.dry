@@ -1,5 +1,107 @@
 title: Election
-on-arrival: {!
+on-arrival: 
+// ==========================
+// Stimmenumverteilung bei Parteiverboten
+// ==========================
+
+var banned_parties = ['nsdap', 'kpd', 'dnvp'];
+
+var redistribution_rules = {
+    nsdap: {
+        get_rules: function(Q) {
+            let base;
+
+            if (!Q.dnvp_banned && !Q.dvp_banned) {
+                base = { dnvp: 0.5, dvp: 0.2, other: 0.3 };
+            } else if (!Q.dvp_banned) {
+                base = { dvp: 0.5, zentrum: 0.2, other: 0.3 };
+            } else {
+                base = { zentrum: 0.4, other: 0.6 };
+            }
+
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.spd = (base.spd || 0) + 0.2;
+                base.zentrum = (base.zentrum || 0) + 0.2;
+            }
+
+            // Normalisieren
+            let total = 0;
+            for (let t in base) total += base[t];
+            for (let t in base) base[t] /= total;
+
+            return base;
+        }
+    },
+
+    dnvp: {
+        get_rules: function(Q) {
+            let base;
+
+            if (!Q.dvp_banned) {
+                base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
+            } else {
+                base = { zentrum: 0.6, other: 0.4 };
+            }
+
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.zentrum += 0.2;
+                base.spd = (base.spd || 0) + 0.2;
+            }
+
+            let total = 0;
+            for (let t in base) total += base[t];
+            for (let t in base) base[t] /= total;
+
+            return base;
+        }
+    },
+
+    kpd: {
+        get_rules: function(Q) {
+            let base;
+
+            if (!Q.nsdap_banned) {
+                base = { spd: 0.6, other: 0.3 };
+            } else {
+                base = { spd: 0.75, other: 0.15 };
+            }
+
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.spd += 0.1;
+                base.zentrum = (base.zentrum || 0) + 0.1;
+            }
+
+            let total = 0;
+            for (let t in base) total += base[t];
+            for (let t in base) base[t] /= total;
+
+            return base;
+        }
+    }
+};
+
+// Stimmen umverteilen
+for (var banned of banned_parties) {
+    if (Q[banned + '_banned']) {
+        for (var c of Q.classes) {
+            var original = Q[c + '_' + banned];
+            if (!original || original === 0) continue;
+
+            var rules = redistribution_rules[banned].get_rules(Q, c);
+
+            for (var t in rules) {
+                Q[c + '_' + t] += original * rules[t];
+            }
+
+            Q[c + '_' + banned] = 0;
+        }
+    }
+}
+
+{!
 // calculate normalized class voting amounts (0 to 100)
 for (var c of Q.classes) {
     var class_votes = 0;
