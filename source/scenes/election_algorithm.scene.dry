@@ -93,7 +93,8 @@ on-arrival: {!
             class_votes += Q[c + '_' + party];
         }
 
-        if (class_votes == 0) continue; // Schutz vor NaN
+        if (class_votes == 0) continue;
+        // Schutz vor NaN
 
         for (var party of Q.parties) {
             Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
@@ -115,7 +116,8 @@ on-arrival: {!
         total_support += party_support;
     }
 
-    if (total_support == 0) total_support = 1; // Schutz vor Division durch Null
+    if (total_support == 0) total_support = 1; 
+    // Schutz vor Division durch Null
 
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
