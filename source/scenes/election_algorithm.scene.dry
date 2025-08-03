@@ -1,7 +1,6 @@
 title: Election
 
 on-arrival: {!
-    // Sicherstellen, dass alle benötigten Parteien in Q.parties enthalten sind
     let required_parties = ['sapd', 'z', 'nsdap', 'dnvp', 'dvp', 'spd', 'other', 'kpd'];
     for (let p of required_parties) {
         if (!Q.parties.includes(p)) Q.parties.push(p);
@@ -162,5 +161,4 @@ on-arrival: {!
         }
     }
 !}
-
 go-to: jumpScene
