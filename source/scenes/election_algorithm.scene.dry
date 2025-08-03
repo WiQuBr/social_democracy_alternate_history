@@ -1,42 +1,42 @@
 title: Election
-on-arrival: 
-if (Q.kpd_banned) {
-    var kpd_redistribution = function(Q) {
-        let base;
+on-arrival: {!
+    if (Q.kpd_banned) {
+        var kpd_redistribution = function(Q) {
+            var base;
 
-        if (!Q.nsdap_banned) {
-            base = { spd: 0.6, other: 0.3, zentrum: 0.1 };
-        } else {
-            base = { spd: 0.75, other: 0.15, zentrum: 0.1 };
+            if (!Q.nsdap_banned) {
+                base = { spd: 0.6, other: 0.3, zentrum: 0.1 };
+            } else {
+                base = { spd: 0.75, other: 0.15, zentrum: 0.1 };
+            }
+
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.6;
+                base.spd += 0.1;
+                base.zentrum += 0.1;
+            }
+
+            var total = 0;
+            for (var t in base) total += base[t];
+            for (var t in base) base[t] /= total;
+
+            return base;
+        };
+
+        var kpd_rules = kpd_redistribution(Q);
+
+        for (var c of Q.classes) {
+            var original = Q[c + '_kpd'];
+            if (!original || original === 0) continue;
+
+            for (var t in kpd_rules) {
+                Q[c + '_' + t] += original * kpd_rules[t];
+            }
+
+            Q[c + '_kpd'] = 0;
         }
-
-        if (Q.electoral_threshold >= 5) {
-            base.other *= 0.6;
-            base.spd += 0.1;
-            base.zentrum += 0.1;
-        }
-
-        // Normalisieren
-        let total = 0;
-        for (let t in base) total += base[t];
-        for (let t in base) base[t] /= total;
-
-        return base;
-    };
-
-    let kpd_rules = kpd_redistribution(Q);
-
-    for (let c of Q.classes) {
-        let original = Q[c + '_kpd'];
-        if (!original || original === 0) continue;
-
-        for (let t in kpd_rules) {
-            Q[c + '_' + t] += original * kpd_rules[t];
-        }
-
-        Q[c + '_kpd'] = 0;
     }
-}
+!}
 
 
 {!
