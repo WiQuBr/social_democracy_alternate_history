@@ -1,6 +1,5 @@
 title: Election
 on-arrival: {!
-
     // KPD
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
