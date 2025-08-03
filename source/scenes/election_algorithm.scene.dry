@@ -130,8 +130,7 @@ on-arrival: {!
             Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
         }
     }
+
+this.go_to("jumpScene");
+
 !}
-
-
-
-go-to: jumpScene
