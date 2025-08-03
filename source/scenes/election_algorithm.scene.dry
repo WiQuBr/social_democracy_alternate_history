@@ -1,9 +1,10 @@
 title: Election
 on-arrival: {!
+
+    // Redistribution from KPD Votes
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
             var base;
-
             if (!Q.nsdap_banned) {
                 base = { spd: 0.6, other: 0.3, zentrum: 0.1 };
             } else {
@@ -19,30 +20,24 @@ on-arrival: {!
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
-
             return base;
         };
 
         var kpd_rules = kpd_redistribution(Q);
-
         for (var c of Q.classes) {
             var original = Q[c + '_kpd'];
             if (!original || original === 0) continue;
-
             for (var t in kpd_rules) {
                 Q[c + '_' + t] += original * kpd_rules[t];
             }
-
             Q[c + '_kpd'] = 0;
         }
     }
-!}
 
-{!
+    // Redistribution from NSDAP Votes
     if (Q.nsdap_banned) {
         var nsdap_redistribution = function(Q) {
             var base;
-
             if (!Q.dnvp_banned) {
                 base = { dnvp: 0.5, dvp: 0.2, other: 0.3 };
             } else {
@@ -58,30 +53,24 @@ on-arrival: {!
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
-
             return base;
         };
 
         var nsdap_rules = nsdap_redistribution(Q);
-
         for (var c of Q.classes) {
             var original = Q[c + '_nsdap'];
             if (!original || original === 0) continue;
-
             for (var t in nsdap_rules) {
                 Q[c + '_' + t] += original * nsdap_rules[t];
             }
-
             Q[c + '_nsdap'] = 0;
         }
     }
-!}
 
-{!
+    // Redistribution from DNVP Votes
     if (Q.dnvp_banned) {
         var dnvp_redistribution = function(Q) {
             var base;
-
             base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
 
             if (Q.electoral_threshold >= 5) {
@@ -93,80 +82,63 @@ on-arrival: {!
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
-
             return base;
         };
 
         var dnvp_rules = dnvp_redistribution(Q);
-
         for (var c of Q.classes) {
             var original = Q[c + '_dnvp'];
             if (!original || original === 0) continue;
-
             for (var t in dnvp_rules) {
                 Q[c + '_' + t] += original * dnvp_rules[t];
             }
-
             Q[c + '_dnvp'] = 0;
         }
     }
-!}
 
-{!
-// calculate normalized class voting amounts (0 to 100)
-for (var c of Q.classes) {
-    var class_votes = 0;
-    for (var party of Q.parties) {
-        if (Q[c+'_'+party] < 0) {
-            Q[c+'_'+party] = 0;
-        }
-        class_votes += Q[c+'_'+party];
-    }
-    for (var party of Q.parties) {
-        Q[c + '_' + party + '_normalized'] = 100*Q[c+'_'+party]/class_votes;
-        Q[c + '_' + party + '_display'] = Math.round(100*Q[c+'_'+party]/class_votes);
-    }
-}
-
-// 1. calculate support for each of the parties
-var total_support = 0;
-for (var party of Q.parties) {
-    var party_support = 0;
+    // ========== Normalisierung Klassenwahl ==========
     for (var c of Q.classes) {
-        // but this version is somewhat more entertaining and allows for wilder swings in votes.
-        // the other option basically necessitates a multi-class strategy. while the first option allows for a working-class-only strategy.
-        if (Q.old_demographics) {
-            // okay i'm pretty sure this is wrong, and the hard version is correct
-            // basically this allows for "spillover" effects in other demographics.
-            // so you can campaign among say the workers and 
-            party_support += Q[c]*Q[c+'_'+party];
-            // However, there should be a cap on how much party support you can get in a certain demo.
-        } else  {
-            party_support += Q[c]*Q[c+'_'+party+'_normalized'];
+        var class_votes = 0;
+        for (var party of Q.parties) {
+            if (Q[c + '_' + party] < 0) Q[c + '_' + party] = 0;
+            class_votes += Q[c + '_' + party];
+        }
+        for (var party of Q.parties) {
+            Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
+            Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
         }
     }
-    Q[party + '_support'] = party_support;
-    total_support += party_support;
-}
-// 2. normalize support (fraction)
-// 3. Round to integers
-// TODO: round to 1 decimal instead of rounding to integers
-// to do that, we multiply party_normalized*1000 and divide the rounded number by 10.
-for (var party of Q.parties) {
-    Q[party+'_normalized'] = Q[party + '_support']/total_support;
-    Q[party+'_votes_dec'] = Math.round(Q[party+'_normalized']*1000)/10;
-    if (Q.use_decimals) {
-        Q[party+'_votes'] = Q[party+'_votes_dec'];
-        Q[party + '_votes_disp'] = Q[party+'_votes'];
-    } else {
-        Q[party+'_votes'] = Math.round(Q[party+'_normalized']*100);
-        Q[party + '_votes_disp'] = Q[party+'_votes_dec'].toFixed(1);
-    }
-    //Q[party+'_votes'] = Q[party+'_votes_dec'];
-    // display
-}
-!}
 
+    // ========== Parteiwertberechnung ==========
+    var total_support = 0;
+    for (var party of Q.parties) {
+        var party_support = 0;
+        for (var c of Q.classes) {
+            if (Q.old_demographics) {
+                party_support += Q[c] * Q[c + '_' + party];
+            } else {
+                party_support += Q[c] * Q[c + '_' + party + '_normalized'];
+            }
+        }
+        Q[party + '_support'] = party_support;
+        total_support += party_support;
+    }
+
+    // ========== Normalisierung & Anzeige ==========
+    for (var party of Q.parties) {
+        Q[party + '_normalized'] = Q[party + '_support'] / total_support;
+        Q[party + '_votes_dec'] = Math.round(Q[party + '_normalized'] * 1000) / 10;
+
+        if (Q.use_decimals) {
+            Q[party + '_votes'] = Q[party + '_votes_dec'];
+            Q[party + '_votes_disp'] = Q[party + '_votes'];
+        } else {
+            Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
+            Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
+        }
+    }
+
+!}
 go-to: jumpScene
 
 # note: this is a helpful utility to deal with elections and so on.
