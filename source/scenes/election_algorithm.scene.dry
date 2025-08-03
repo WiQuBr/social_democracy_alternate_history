@@ -1,24 +1,26 @@
 title: Election
+
 on-arrival: {!
-    // Sicherstellen, dass SAPD in Q.parties ist, wenn gebildet
-    if (Q.sapd_formed && !Q.parties.includes('sapd')) {
-        Q.parties.push('sapd');
+    // Sicherstellen, dass alle benötigten Parteien in Q.parties enthalten sind
+    let required_parties = ['sapd', 'z', 'nsdap', 'dnvp', 'dvp', 'spd', 'other', 'kpd'];
+    for (let p of required_parties) {
+        if (!Q.parties.includes(p)) Q.parties.push(p);
     }
 
-    // === KPD – Verbot und Umverteilung ===
+    // KPD – Verbot und Umverteilung
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
             var base;
 
             if (Q.sapd_formed) {
-                // Mit SAPD
+                // SAPD gebildet
                 if (!Q.nsdap_banned) {
                     base = { spd: 0.15, sapd: 0.7, z: 0.05, other: 0.05, nsdap: 0.05 };
                 } else {
                     base = { spd: 0.15, sapd: 0.75, z: 0.05, other: 0.05 };
                 }
             } else {
-                // Ohne SAPD
+                // Keine SAPD
                 if (!Q.nsdap_banned) {
                     base = { spd: 0.75, other: 0.05, nsdap: 0.1, z: 0.1 };
                 } else {
@@ -49,12 +51,11 @@ on-arrival: {!
                 if (Q[c + '_' + t] === undefined) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * kpd_rules[t];
             }
-
             Q[c + '_kpd'] = 0;
         }
     }
 
-    // === NSDAP – Verbot und Umverteilung ===
+    // NSDAP – Verbot und Umverteilung
     if (Q.nsdap_banned) {
         var nsdap_redistribution = function(Q) {
             var base;
@@ -73,7 +74,6 @@ on-arrival: {!
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
-
             return base;
         };
 
@@ -81,31 +81,26 @@ on-arrival: {!
         for (var c of Q.classes) {
             var original = Q[c + '_nsdap'];
             if (!original || original === 0) continue;
-
             for (var t in nsdap_rules) {
                 if (Q[c + '_' + t] === undefined) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * nsdap_rules[t];
             }
-
             Q[c + '_nsdap'] = 0;
         }
     }
 
-    // === DNVP – Verbot und Umverteilung ===
+    // DNVP – Verbot und Umverteilung
     if (Q.dnvp_banned) {
         var dnvp_redistribution = function(Q) {
             var base = { dvp: 0.4, z: 0.4, other: 0.2 };
-
             if (Q.electoral_threshold >= 5) {
                 base.other *= 0.6;
                 base.dvp += 0.2;
                 base.z += 0.2;
             }
-
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
-
             return base;
         };
 
@@ -113,17 +108,15 @@ on-arrival: {!
         for (var c of Q.classes) {
             var original = Q[c + '_dnvp'];
             if (!original || original === 0) continue;
-
             for (var t in dnvp_rules) {
                 if (Q[c + '_' + t] === undefined) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * dnvp_rules[t];
             }
-
             Q[c + '_dnvp'] = 0;
         }
     }
 
-    // === Klassen-Normalisierung ===
+    // Stimmen innerhalb der Klassen normalisieren
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
@@ -139,7 +132,7 @@ on-arrival: {!
         }
     }
 
-    // === Gesamtergebnis-Berechnung ===
+    // Gesamtergebnis berechnen
     var total_support = 0;
     for (var party of Q.parties) {
         var party_support = 0;
@@ -154,7 +147,7 @@ on-arrival: {!
         total_support += party_support;
     }
 
-    if (total_support === 0) total_support = 1; // Schutz vor Division durch 0
+    if (total_support === 0) total_support = 1;
 
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
