@@ -115,7 +115,7 @@ on-arrival: {!
         total_support += party_support;
     }
 
-    if (total_support == 0) total_support = 1; // Schutz vor Division durch 0
+    if (total_support == 0) total_support = 1; // Schutz vor Division durch Null
 
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
