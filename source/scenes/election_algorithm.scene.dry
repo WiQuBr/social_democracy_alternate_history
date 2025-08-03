@@ -1,60 +1,36 @@
 title: Election
-
 on-arrival: {!
-    let required_parties = ['sapd', 'z', 'nsdap', 'dnvp', 'dvp', 'spd', 'other', 'kpd'];
-    for (let p of required_parties) {
-        if (!Q.parties.includes(p)) Q.parties.push(p);
-    }
-
-    // KPD – Verbot und Umverteilung
+    // KPD
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
             var base;
-
-            if (Q.sapd_formed) {
-                // SAPD gebildet
-                if (!Q.nsdap_banned) {
-                    base = { spd: 0.15, sapd: 0.7, z: 0.05, other: 0.05, nsdap: 0.05 };
-                } else {
-                    base = { spd: 0.15, sapd: 0.75, z: 0.05, other: 0.05 };
-                }
+            if (!Q.nsdap_banned) {
+                base = { spd: 0.6, other: 0.3, z: 0.1 };
             } else {
-                // Keine SAPD
-                if (!Q.nsdap_banned) {
-                    base = { spd: 0.75, other: 0.05, nsdap: 0.1, z: 0.1 };
-                } else {
-                    base = { spd: 0.75, other: 0.15, z: 0.1 };
-                }
+                base = { spd: 0.75, other: 0.15, z: 0.1 };
             }
-
             if (Q.electoral_threshold >= 5) {
-                if (base.other !== undefined) base.other *= 0.6;
-                if (base.sapd !== undefined) base.sapd *= 0.8;
+                base.other *= 0.6;
                 base.spd += 0.1;
-                base.z += 0.05;
+                base.z += 0.1;
             }
-
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
-
             return base;
         };
-
         var kpd_rules = kpd_redistribution(Q);
         for (var c of Q.classes) {
             var original = Q[c + '_kpd'];
             if (!original || original === 0) continue;
-
             for (var t in kpd_rules) {
-                if (Q[c + '_' + t] === undefined) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * kpd_rules[t];
             }
             Q[c + '_kpd'] = 0;
         }
     }
 
-    // NSDAP – Verbot und Umverteilung
+    // NSDAP
     if (Q.nsdap_banned) {
         var nsdap_redistribution = function(Q) {
             var base;
@@ -63,32 +39,28 @@ on-arrival: {!
             } else {
                 base = { dvp: 0.5, z: 0.2, other: 0.3 };
             }
-
             if (Q.electoral_threshold >= 5) {
                 base.other *= 0.6;
                 base.dvp += 0.2;
                 base.z += 0.2;
             }
-
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
             return base;
         };
-
         var nsdap_rules = nsdap_redistribution(Q);
         for (var c of Q.classes) {
             var original = Q[c + '_nsdap'];
             if (!original || original === 0) continue;
             for (var t in nsdap_rules) {
-                if (Q[c + '_' + t] === undefined) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * nsdap_rules[t];
             }
             Q[c + '_nsdap'] = 0;
         }
     }
 
-    // DNVP – Verbot und Umverteilung
+    // DNVP
     if (Q.dnvp_banned) {
         var dnvp_redistribution = function(Q) {
             var base = { dvp: 0.4, z: 0.4, other: 0.2 };
@@ -102,20 +74,17 @@ on-arrival: {!
             for (var t in base) base[t] /= total;
             return base;
         };
-
         var dnvp_rules = dnvp_redistribution(Q);
         for (var c of Q.classes) {
             var original = Q[c + '_dnvp'];
             if (!original || original === 0) continue;
             for (var t in dnvp_rules) {
-                if (Q[c + '_' + t] === undefined) Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * dnvp_rules[t];
             }
             Q[c + '_dnvp'] = 0;
         }
     }
 
-    // Stimmen innerhalb der Klassen normalisieren
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
@@ -123,7 +92,8 @@ on-arrival: {!
             class_votes += Q[c + '_' + party];
         }
 
-        if (class_votes === 0) continue;
+        if (class_votes == 0) continue;
+        // Schutz vor NaN
 
         for (var party of Q.parties) {
             Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
@@ -131,7 +101,6 @@ on-arrival: {!
         }
     }
 
-    // Gesamtergebnis berechnen
     var total_support = 0;
     for (var party of Q.parties) {
         var party_support = 0;
@@ -146,7 +115,8 @@ on-arrival: {!
         total_support += party_support;
     }
 
-    if (total_support === 0) total_support = 1;
+    if (total_support == 0) total_support = 1; 
+    // Schutz vor Division durch Null
 
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
@@ -159,6 +129,6 @@ on-arrival: {!
             Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
             Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
         }
-    }
+        }
 !}
 go-to: jumpScene
