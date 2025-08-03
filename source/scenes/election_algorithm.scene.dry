@@ -1,7 +1,11 @@
 title: Election
-on-arrival: {!
 
-    // Redistribution from KPD Votes
+# Wahlberechnung mit Stimmenumverteilung bei Parteiverboten
+
+on-arrival: {!
+    // Stimmenumverteilung bei Parteiverboten
+
+    // KPD
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
             var base;
@@ -10,19 +14,16 @@ on-arrival: {!
             } else {
                 base = { spd: 0.75, other: 0.15, zentrum: 0.1 };
             }
-
             if (Q.electoral_threshold >= 5) {
                 base.other *= 0.6;
                 base.spd += 0.1;
                 base.zentrum += 0.1;
             }
-
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
             return base;
         };
-
         var kpd_rules = kpd_redistribution(Q);
         for (var c of Q.classes) {
             var original = Q[c + '_kpd'];
@@ -34,7 +35,7 @@ on-arrival: {!
         }
     }
 
-    // Redistribution from NSDAP Votes
+    // NSDAP
     if (Q.nsdap_banned) {
         var nsdap_redistribution = function(Q) {
             var base;
@@ -43,19 +44,16 @@ on-arrival: {!
             } else {
                 base = { dvp: 0.5, zentrum: 0.2, other: 0.3 };
             }
-
             if (Q.electoral_threshold >= 5) {
                 base.other *= 0.6;
                 base.dvp += 0.2;
                 base.zentrum += 0.2;
             }
-
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
             return base;
         };
-
         var nsdap_rules = nsdap_redistribution(Q);
         for (var c of Q.classes) {
             var original = Q[c + '_nsdap'];
@@ -67,24 +65,20 @@ on-arrival: {!
         }
     }
 
-    // Redistribution from DNVP Votes
+    // DNVP
     if (Q.dnvp_banned) {
         var dnvp_redistribution = function(Q) {
-            var base;
-            base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
-
+            var base = { dvp: 0.4, zentrum: 0.4, other: 0.2 };
             if (Q.electoral_threshold >= 5) {
                 base.other *= 0.6;
                 base.dvp += 0.2;
                 base.zentrum += 0.2;
             }
-
             var total = 0;
             for (var t in base) total += base[t];
             for (var t in base) base[t] /= total;
             return base;
         };
-
         var dnvp_rules = dnvp_redistribution(Q);
         for (var c of Q.classes) {
             var original = Q[c + '_dnvp'];
@@ -96,20 +90,23 @@ on-arrival: {!
         }
     }
 
-    // ========== Normalisierung Klassenwahl ==========
+    // Stimmen in Klassen normalisieren
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
             if (Q[c + '_' + party] < 0) Q[c + '_' + party] = 0;
             class_votes += Q[c + '_' + party];
         }
+
+        if (class_votes == 0) continue; // Schutz vor NaN
+
         for (var party of Q.parties) {
             Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
             Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
         }
     }
 
-    // ========== Parteiwertberechnung ==========
+    // Gesamtwahlberechnung
     var total_support = 0;
     for (var party of Q.parties) {
         var party_support = 0;
@@ -124,7 +121,8 @@ on-arrival: {!
         total_support += party_support;
     }
 
-    // ========== Normalisierung & Anzeige ==========
+    if (total_support == 0) total_support = 1; // Schutz vor Division durch 0
+
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
         Q[party + '_votes_dec'] = Math.round(Q[party + '_normalized'] * 1000) / 10;
@@ -137,8 +135,8 @@ on-arrival: {!
             Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
         }
     }
-
 !}
+
 go-to: jumpScene
 
 # note: this is a helpful utility to deal with elections and so on.
