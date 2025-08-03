@@ -1,5 +1,6 @@
 title: Election
 on-arrival: {!
+
     // KPD
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
@@ -85,7 +86,6 @@ on-arrival: {!
         }
     }
 
-    // Stimmen in Klassen normalisieren
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
@@ -101,7 +101,6 @@ on-arrival: {!
         }
     }
 
-    // Gesamtwahlberechnung
     var total_support = 0;
     for (var party of Q.parties) {
         var party_support = 0;
