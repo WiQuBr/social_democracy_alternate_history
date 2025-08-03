@@ -1,5 +1,5 @@
 title: Election
-on-arrival: |
+on-arrival: {!
     // KPD
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
@@ -24,7 +24,6 @@ on-arrival: |
             var original = Q[c + '_kpd'];
             if (!original || original === 0) continue;
             for (var t in kpd_rules) {
-                if (typeof Q[c + '_' + t] !== 'number') Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * kpd_rules[t];
             }
             Q[c + '_kpd'] = 0;
@@ -55,7 +54,6 @@ on-arrival: |
             var original = Q[c + '_nsdap'];
             if (!original || original === 0) continue;
             for (var t in nsdap_rules) {
-                if (typeof Q[c + '_' + t] !== 'number') Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * nsdap_rules[t];
             }
             Q[c + '_nsdap'] = 0;
@@ -81,14 +79,12 @@ on-arrival: |
             var original = Q[c + '_dnvp'];
             if (!original || original === 0) continue;
             for (var t in dnvp_rules) {
-                if (typeof Q[c + '_' + t] !== 'number') Q[c + '_' + t] = 0;
                 Q[c + '_' + t] += original * dnvp_rules[t];
             }
             Q[c + '_dnvp'] = 0;
         }
     }
 
-    // Normalize class votes
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
@@ -97,6 +93,7 @@ on-arrival: |
         }
 
         if (class_votes == 0) continue;
+        // Schutz vor NaN
 
         for (var party of Q.parties) {
             Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
@@ -104,7 +101,6 @@ on-arrival: |
         }
     }
 
-    // Support calculation
     var total_support = 0;
     for (var party of Q.parties) {
         var party_support = 0;
@@ -119,7 +115,8 @@ on-arrival: |
         total_support += party_support;
     }
 
-    if (total_support == 0) total_support = 1;
+    if (total_support == 0) total_support = 1; 
+    // Schutz vor Division durch Null
 
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
@@ -132,6 +129,6 @@ on-arrival: |
             Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
             Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
         }
-    }
-
+        }
+!}
 go-to: jumpScene
