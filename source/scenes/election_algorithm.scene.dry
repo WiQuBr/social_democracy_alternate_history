@@ -134,5 +134,3 @@ on-arrival: {!
 !}
 
 go-to: jumpScene
-
-# note: this is a helpful utility to deal with elections and so on.
