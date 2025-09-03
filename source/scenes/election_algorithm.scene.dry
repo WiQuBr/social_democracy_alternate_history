@@ -158,4 +158,3 @@ on-arrival: {!
     debugLogNaN(Q, "Endgültige Werte");
 !}
 go-to: jumpScene
-go-to: jumpScene
