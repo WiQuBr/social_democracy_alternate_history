@@ -1,5 +1,17 @@
 title: Election
 on-arrival: {!
+    function debugLogNaN(Q, context) {
+        for (var c of Q.classes) {
+            for (var party of Q.parties) {
+                var key = c + '_' + party;
+                if (!isFinite(Q[key])) {
+                    console.log("[DEBUG:NaN] " + context + " → " + key + " = " + Q[key]);
+                    Q[key] = 0; // Setze NaN sicherheitshalber auf 0, damit nichts crasht
+                }
+            }
+        }
+    }
+
     // KPD
     if (Q.kpd_banned) {
         var kpd_redistribution = function(Q) {
@@ -24,7 +36,9 @@ on-arrival: {!
             var original = Q[c + '_kpd'];
             if (!original || original === 0) continue;
             for (var t in kpd_rules) {
-                Q[c + '_' + t] += original * kpd_rules[t];
+                var key = c + '_' + t;
+                if (typeof Q[key] !== 'number') Q[key] = 0;
+                Q[key] += original * kpd_rules[t];
             }
             Q[c + '_kpd'] = 0;
         }
@@ -54,7 +68,9 @@ on-arrival: {!
             var original = Q[c + '_nsdap'];
             if (!original || original === 0) continue;
             for (var t in nsdap_rules) {
-                Q[c + '_' + t] += original * nsdap_rules[t];
+                var key = c + '_' + t;
+                if (typeof Q[key] !== 'number') Q[key] = 0;
+                Q[key] += original * nsdap_rules[t];
             }
             Q[c + '_nsdap'] = 0;
         }
@@ -79,12 +95,18 @@ on-arrival: {!
             var original = Q[c + '_dnvp'];
             if (!original || original === 0) continue;
             for (var t in dnvp_rules) {
-                Q[c + '_' + t] += original * dnvp_rules[t];
+                var key = c + '_' + t;
+                if (typeof Q[key] !== 'number') Q[key] = 0;
+                Q[key] += original * dnvp_rules[t];
             }
             Q[c + '_dnvp'] = 0;
         }
     }
 
+    // Debug-Ausgabe nach der Umverteilung
+    debugLogNaN(Q, "Nach Umverteilung");
+
+    // Stimmen normalisieren
     for (var c of Q.classes) {
         var class_votes = 0;
         for (var party of Q.parties) {
@@ -92,14 +114,16 @@ on-arrival: {!
             class_votes += Q[c + '_' + party];
         }
 
-        if (class_votes == 0) continue;
-        // Schutz vor NaN
+        if (class_votes === 0) continue;
 
         for (var party of Q.parties) {
             Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
             Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
         }
     }
+
+    // Debug-Ausgabe nach Normalisierung
+    debugLogNaN(Q, "Nach Normalisierung");
 
     var total_support = 0;
     for (var party of Q.parties) {
@@ -115,8 +139,7 @@ on-arrival: {!
         total_support += party_support;
     }
 
-    if (total_support == 0) total_support = 1; 
-    // Schutz vor Division durch Null
+    if (total_support === 0) total_support = 1;
 
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
@@ -129,6 +152,10 @@ on-arrival: {!
             Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
             Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
         }
-        }
+    }
+
+    // Debug-Ausgabe ganz am Ende
+    debugLogNaN(Q, "Endgültige Werte");
 !}
+go-to: jumpScene
 go-to: jumpScene
