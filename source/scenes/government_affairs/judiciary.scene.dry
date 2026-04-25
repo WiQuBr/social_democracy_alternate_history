@@ -48,7 +48,7 @@ achievement: banned_nsdap
 
 The NSDAP is finally banned, the threat from the Nazis to our democracy is finally away.
 
-@ban_nsdap
+@ban_dnvp
 view-if: constitutional_bans_allowed == 1 and dnvp_banned == 0
 choose-if: investigate_far_right > 5 and nsdap_banned == 1 and judicial_reform >= 3
 unavailable-subtitle: [? if investigate_far_right < 6 : We don't have enough evidence of their unconstitutionality. ?] [? if nsdap_banned != 1 : We can't argue for a ban of the DNVP while the NSDAP is still available and a huge threat. ?] [? if judicial_reform <= 2 : The judiciary is still to reactionary to ban the DNVP. ?]
