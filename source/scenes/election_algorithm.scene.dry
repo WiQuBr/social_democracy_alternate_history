@@ -103,6 +103,33 @@ on-arrival: {!
         }
     }
 
+// DVP
+    if (Q.dvp_banned) {
+        var dvp_redistribution = function(Q) {
+            var base = { ddp: 0.6, z: 0.3, other: 0.1 };
+            if (Q.electoral_threshold >= 5) {
+                base.other *= 0.5;
+                base.ddp += 0.3;
+                base.z += 0.2;
+            }
+            var total = 0;
+            for (var t in base) total += base[t];
+            for (var t in base) base[t] /= total;
+            return base;
+        };
+        var dvp_rules = dvp_redistribution(Q);
+        for (var c of Q.classes) {
+            var original = Q[c + '_dvp'];
+            if (!original || original === 0) continue;
+            for (var t in dvp_rules) {
+                var key = c + '_' + t;
+                if (typeof Q[key] !== 'number') Q[key] = 0;
+                Q[key] += original * dvp_rules[t];
+            }
+            Q[c + '_dvp'] = 0;
+        }
+    }
+
     // Debug-Ausgabe nach der Umverteilung
     debugLogNaN(Q, "Nach Umverteilung");
 
