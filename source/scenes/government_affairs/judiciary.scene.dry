@@ -19,6 +19,7 @@ The Judiciary is one of the most reactionary components of the government, along
 - @as_is: Leave the judiciary as it is.
 - @ban_nsdap: We must consider banning the NSDAP.
 - @ban_dnvp: We must consider banning the DNVP.
+- @ban_dvp: We must consider banning the DVP.
 - @ban_kpd: We must consider banning the KPD.
 - @easy_discard
 - @cancel_advisor_action
@@ -55,7 +56,14 @@ unavailable-subtitle: [? if investigate_far_right < 6 : We don't have enough evi
 on-arrival: dnvp_banned = 1; workers_dnvp -= 2; new_middle_dnvp -= 3; old_middle_dnvp -= 5; rural_dnvp -= 20; unemployed_dnvp -= 8;
 achievement: banned_dnvp
 
-The DNVP is finally banned, the threat from the Monarchists to our democracy is finally away.
+@ban_dvp
+view-if: constitutional_bans_allowed == 1 and dvp_banned == 0
+choose-if: investigate_far_right > 7 and dnvp_banned == 1 and judicial_reform >= 5
+unavailable-subtitle: [? if investigate_far_right < 8 : We don't have enough evidence of their unconstitutionality. ?] [? if nsdap_banned != 1 : We can't argue for a ban of the DVP while the NSDAP and DNVP is still available and a huge threat. ?] [? if nsdap_banned == 1 and dnvp_banned != 1: We can't argue for a ban of the DVP while the DNVP is still available and a huge threat. ?] [? if judicial_reform <= 4 : The judiciary is still to reactionary to ban the DVP. ?]
+on-arrival: dvp_banned = 1; workers_dvp -= 2; new_middle_dvp -= 5; old_middle_dvp -= 20; rural_dvp -= 5; unemployed_dvp -= 8;
+achievement: banned_dvp
+
+The DVP is finally banned, the threat from the far right bourgois to our democracy is finally away.
 
 @ban_kpd
 view-if: constitutional_bans_allowed == 1 and kpd_banned == 0
