@@ -51,7 +51,11 @@ on-arrival: investigate_far_right += 1; sa_strength -= 20; workers_nsdap -= 3; n
 [? if investigate_far_right == 1 : We have discovered collusion between Hjalmar Schacht, president of the Reichsbank, and the Nazis. This is very useful information. ?]
 [? if investigate_far_right == 2 : We have discovered illegal arms smuggling by the SA, the Nazi paramilitary. ?]
 [? if investigate_far_right == 3 : We have discovered a secret cache of documents from the NSDAP detailing their plan to violently take over the country if they enter into power. This is an anti-constitutional plot, and will be publicized and persecuted. ?]
-[? if investigate_far_right > 3 : Of course the Nazis are doing crimes; everyone knows that. Now, we finally have proof. ?]
+[? if investigate_far_right == 4 : Of course the Nazis are doing crimes; everyone knows that. Now, we finally have proof. ?]
+[? if investigate_far_right == 5 : Of course the Nazis are doing crimes, but we discovered ties between the Nazis and Monarchists. This is interesting. ?]
+[? if investigate_far_right == 6 : Of course the Nazis and Monarchists are doing crimes. The bourgois party of the DVP has also ties to the right wing extremist from the NSDAP and DNVP. We should observe them more. ?]
+[? if investigate_far_right == 7 : Of course the Nazis and Monarchists are doing crimes; everyone knows that. Now, we finally have also proof, that the bourgois party DVP has deep connections with them. ?]
+[? if investigate_far_right > 7 : Of course the Nazis, Monarchists and bourgois are doing crimes; everyone knows that. Now, we finally have proof. ?]
 
 [? if coup_progress >= 6: There are reports of an imminent coup by the far-right. We have attempted to disrupt some of these plans, but the threat is still present. ?]
 
