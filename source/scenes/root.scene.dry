@@ -660,7 +660,7 @@ go-to: menu
 The end date has been enabled.
 
 @enable_resistance
-view-if: resistance_enabled = 0
+view-if: resistance_enabled != 1
 on-arrival: resistance_enabled = 1
 go-to: menu
 
