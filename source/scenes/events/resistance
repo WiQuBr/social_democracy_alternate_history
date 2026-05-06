@@ -1,0 +1,18 @@
+title: We go into resistance
+subtitle: The Nazis took power and we have an obligation to fight against them!
+view-if: resistance_enabled = 1
+
+- @unite_against_fascism
+- @stay_alone
+
+@unite_against_fascism
+unavailable-subtitle: [? if kpd_relation < 30: The communists think, we are too social fascist to be a good partner against the Nazis. ?]
+choose-if: kpd_relation >= 30 
+on-arrival: antifa = 1; resistance = 1
+
+We found the Antifascist Action (Antifaschistische Aktion (Antifa)) withe the KPD to fight aganist Hitler.
+
+@stay_alone 
+on-arrival: resistance = 1
+
+We don't want to cooperate with the radical communists from the KPD. [? if kpd_relation < 30: The communist don't want to cooperate with us either. ?]
