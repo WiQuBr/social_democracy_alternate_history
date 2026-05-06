@@ -55,6 +55,7 @@ We have called for new elections, set for [+ next_election_month : month +] [+ n
 
 @skip
 title: Skip a month (for the case, you dont have any cards in a month.)
+choose-if: breitscheid_advisor = 1
 on-arrival: month_actions += 1
 
 We skipped a month.
