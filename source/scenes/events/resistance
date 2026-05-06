@@ -1,6 +1,6 @@
 title: We go into resistance
 subtitle: The Nazis took power and we have an obligation to fight against them!
-view-if: resistance_enabled = 1
+view-if: resistance_enabled = 1 and wels_seen = 1
 
 - @unite_against_fascism
 - @stay_alone
