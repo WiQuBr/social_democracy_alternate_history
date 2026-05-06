@@ -641,6 +641,8 @@ For other, non-difficulty related tweaks.
 
 - @disable_end: Disable end in 1934.
 - @enable_end: Enable end in 1934.
+- @enable_resistance: Enable resistance lore against Hitler. (WIP)
+- @disable_resistance: Disable resistance lore against Hitler.
 - @menu: Back.
 
 @disable_end
@@ -656,6 +658,20 @@ on-arrival: end_disabled = 0
 go-to: menu
 
 The end date has been enabled.
+
+@enable_resistance
+view-if: resistance_enabled = 0
+on-arrival: resistance_enabled = 1
+go-to: menu
+
+You can now play the resistance against Hitler, when he should take power. (This is very WIP, dont play it, when you are new to this mod)
+
+@disable_resistance
+view-if: resistance_enabled = 1
+on-arrival: resistance_enabled = 0
+go-to: menu
+
+Resistance lore has been disabled. 
 
 @menu
 
