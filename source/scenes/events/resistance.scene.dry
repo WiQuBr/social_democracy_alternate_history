@@ -1,13 +1,14 @@
 title: We go into resistance
-subtitle: The Nazis took power and we have an obligation to fight against them!
-frequency: 1000
-max-visits: 1
-tags: event
+subtitle: The Nazis took power and we have an obligation to fight against them
 new-page: true
+tags: event
 view-if: resistance_enabled = 1 and wels_seen = 1
+max-visits: 1
 
-- @unite_against_fascism
-- @stay_alone
+Hitler took power and we have to build a resistance against him.
+
+- @unite_against_fascism: Unite with the KPD against the fascist dictatorship!
+- @stay_alone Only build a resistance with the Weimar Parties.
 
 @unite_against_fascism
 unavailable-subtitle: [? if kpd_relation < 30: The communists think, we are too social fascist to be a good partner against the Nazis. ?]
