@@ -8,10 +8,10 @@ max-visits: 1
 Hitler took power and we have to build a resistance against him.
 
 - @unite_against_fascism: Unite with the KPD against the fascist dictatorship!
-- @stay_alone Only build a resistance with the Weimar Parties.
+- @stay_alone: Only build a resistance with the Weimar Parties.
 
 @unite_against_fascism
-unavailable-subtitle: [? if kpd_relation < 30: The communists think, we are too social fascist to be a good partner against the Nazis. ?]
+unavailable-subtitle: [? if kpd_relation < 30: The communists think we are too social fascist to be a good partner against the Nazis. ?]
 choose-if: kpd_relation >= 30 
 on-arrival: antifa = 1; resistance = 1
 
