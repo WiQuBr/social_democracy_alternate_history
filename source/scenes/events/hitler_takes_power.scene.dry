@@ -31,7 +31,7 @@ The Reichstag is burned, ostensibly by a foreign communist. In the wake, the Naz
 Germany is lost.
 
 - @otto_wels: We make a speech before the enabling act is passed!
-- @resistance: We will found a resistance against Hitler.
+
 @otto_wels
 view-if: wels_advisor == 1
 achievement: wels_rede
@@ -75,5 +75,8 @@ Die Verfassung von Weimar ist keine sozialistische Verfassung. Aber wir stehen z
 Kein Ermächtigungsgesetz gibt Ihnen die Macht, Ideen, die ewig und unzerstörbar sind, zu vernichten. Sie selbst haben sich ja zum Sozialismus bekannt. Das Sozialgesetz hat die Sozialdemokratie nicht vernichtet. Auch aus neuen Verfolgungen kann die deutsche Sozialdemokratie neue Kraft schöpfen.
 Wir grüßen die Verfolgten und Bedrängten. Wir grüßen unsere Freunde im Reich. Ihre Standhaftigkeit und Treue verdienen Bewunderung. Ihr Bekennermut, ihre ungebrochene Zuversicht verbürgen eine hellere Zukunft.
 
+- @resistance: We will found a resistance against Hitler.
+
+Now we have to go into resistance...
 
 - @game_over: Game over.
