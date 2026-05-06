@@ -4,7 +4,7 @@ frequency: 1000
 max-visits: 1
 tags: event
 new-page: true
-view-if: resistance_enabled == 1 and wels_seen == 1
+view-if: resistance_enabled = 1 and wels_seen = 1
 
 - @unite_against_fascism
 - @stay_alone
