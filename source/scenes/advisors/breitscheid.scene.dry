@@ -13,7 +13,7 @@ Breitscheid is a long-time SPD leader, who was at one time part of the anti-war 
 - @breitscheid_foreign
 - @party_discipline
 - @snap_election
-- @skip
+- @skip_month
 - @end_game
 - @root: Return to main
 
@@ -53,8 +53,9 @@ on-arrival: advisor_action_timer = 6; next_election_time = time + 3 if next_elec
 
 We have called for new elections, set for [+ next_election_month : month +] [+ next_election_year +].
 
-@skip
-title: Skip a month (for the case, you dont have any cards in a month.)
+@skip_month
+title: Skip a month
+subtitle: We want a month vacation
 choose-if: breitscheid_advisor = 1
 on-arrival: month_actions += 1
 
