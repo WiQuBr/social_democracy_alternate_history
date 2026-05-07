@@ -56,7 +56,6 @@ We have called for new elections, set for [+ next_election_month : month +] [+ n
 @skip_month
 title: Skip a month
 subtitle: We want a month vacation
-choose-if: breitscheid_advisor = 1
 on-arrival: month_actions += 1
 
 We skipped a month.
