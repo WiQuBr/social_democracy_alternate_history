@@ -54,11 +54,11 @@ on-arrival: advisor_action_timer = 6; next_election_time = time + 3 if next_elec
 We have called for new elections, set for [+ next_election_month : month +] [+ next_election_year +].
 
 @skip_month
-title: Skip a month
-subtitle: We want a month vacation
+title: Take a month vacation
+subtitle: Surely the political situation will improve on its own.
 on-arrival: month_actions += 1
 
-We skipped a month.
+We will continue doing absolutely nothing. What is the worst that could possibly happen?
 
 @end_game
 title: End the game.
