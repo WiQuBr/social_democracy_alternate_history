@@ -118,7 +118,7 @@ if (Q.sa_strength) {
 
 = Paramilitaries
 
-[? if resistance != 1 and antifa != 1 and rb_exit != 1: <span class="tooltip-text" title="<span class="tooltip-text" title="The Reichsbanner Schwarz-Rot-Gold is a popular organization for defending democracy, mostly affiliated with the SPD."><span style="color: #000000;">Reic</span><span style="color: #DD0000;">hsba</span><span style="color: #FFCC00;">nner</span> ?] Strength: [+ rb_strength_2 +] thousand
+[? if resistance != 1 and antifa != 1 and rb_exit != 1: <span class="tooltip-text" title="The Reichsbanner Schwarz-Rot-Gold is a popular organization for defending democracy, mostly affiliated with the SPD."><span style="color: #000000;">Reic</span><span style="color: #DD0000;">hsba</span><span style="color: #FFCC00;">nner</span> ?] Strength: [+ rb_strength_2 +] thousand
 
 Reichsbanner Militarization: [+ rb_militancy : militancy +]
 
