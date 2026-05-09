@@ -1,22 +1,22 @@
 title: We go into resistance
-subtitle: The Nazis took power and we have an obligation to fight against them
+subtitle: The <span style="color: #7A3C00;">**Nazis**</span> took power and we have an obligation to fight against them
 new-page: true
-view-if: resistance_enabled = 1 and wels_seen = 1
+view-if: resistance_enabled = 1 and wels_seen != 1
 max-visits: 1
 
-Hitler took power and we have to build a resistance against him.
+<span style="color: #7A3C00;">**Hitler**</span> took power and we have to build a resistance against him.
 
-- @unite_against_fascism: Unite with the KPD against the fascist dictatorship!
-- @stay_alone: Only build a resistance with the Weimar Parties.
+- @unite_against_fascism: Unite with the <span style="color: #700000;">**KPD**</span> against the <span style="color: #7A3C00;">**Nazis**</span>!
+- @stay_alone: Only build a resistance with the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Parties.
 
 @unite_against_fascism
-unavailable-subtitle: [? if kpd_relation < 30: The communists think we are too social fascist to be a good partner against the Nazis. ?]
+unavailable-subtitle: [? if kpd_relation < 30: The <span style="color: #700000;">**Communists**</span> think we are too social fascist to be a good partner against the <span style="color: #7A3C00;">**Nazis**</span>. ?]
 choose-if: kpd_relation >= 30 
 on-arrival: antifa = 1; resistance = 1
 
-We found the Antifascist Action (Antifaschistische Aktion (Antifa)) with the KPD to fight against Hitler.
+We found the Antifascist Action (Antifaschistische Aktion (<span style="color:#DD0000;">Ant</span><span style="color:#000000;">ifa</span>)) with the <span style="color: #700000;">**KPD**</span> to fight against the <span style="color: #7A3C00;">**Nazis**</span>.
 
 @stay_alone 
 on-arrival: resistance = 1
 
-We don't want to cooperate with the radical communists from the KPD. [? if kpd_relation < 30: The communist don't want to cooperate with us either. ?]
+We don't want to cooperate with the radical <span style="color: #700000;">**Communists**</span> from the <span style="color: #700000;">**KPD**</span>. [? if kpd_relation < 30: The <span style="color: #700000;">**Communists**</span> don't want to cooperate with us either. ?]
