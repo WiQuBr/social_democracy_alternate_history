@@ -75,17 +75,17 @@ Economic growth: [+ economic_growth_2 +]%
 = Inter-party Relations
 
 
-{!<span class="tooltip-text" title="Center Party">Z</span>!}: [+ z_relation : relationships +]
+<span class="tooltip-text" title="Center Party"><span style="color:#000000;">Z</span></span>: [+ z_relation : relationships +]
 
-{!<span class="tooltip-text" title="German Democratic Party">!}[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]{!</span>!}: [+ ddp_relation : relationships +]
+[? if ddp_name = "DDP":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if ddp_name = "DStP":<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_relation : relationships +]
 
-{!<span class="tooltip-text" title="German People's Party">DVP</span>!}: [+ dvp_relation : relationships +]
+<span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: [+ dvp_relation : relationships +]
 
-{!<span class="tooltip-text" title="Communist Party of Germany">KPD</span>!}: [+ kpd_relation : relationships +]
+<span class="tooltip-text" title="Communist Party of Germany" style="color: #700000;">**KPD**</span>: [+ kpd_relation : relationships +]
 
-{!<span class="tooltip-text" title="German National People's Party">DNVP</span>!}: [+ dnvp_relation : relationships +]
+<span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_relation : relationships +]
 
-{!<span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)">NSDAP</span>!}: [+ nsdap_relation : relationships +]
+<span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)"><span style="color:#7A3C00;">NSDAP</span></span>: [+ nsdap_relation : relationships +]
 
 = Internal Factions of the SPD
 
@@ -122,17 +122,17 @@ if (Q.sa_strength) {
 
 [? if resistance != 1 and antifa != 1 and rb_exit != 1: <span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> ?][? if resistance != 1 and antifa != 1 and rb_exit == 1: <span style="color:#DD0000;">Reichsbanner</span> ?][? if resistance == 1 and antifa != 1: <span style="color:#000000;">Res</span><span style="color:#DD0000;">ista</span><span style="color:#FFCC00;">nce</span> ?] [? if antifa == 1: <span style="color:#DD0000;">Ant</span><span style="color:#000000;">ifa</span> ?] Militarization: [+ rb_militancy : militancy +]
 
-{!<span class="tooltip-text" title="The RFB (Rotfrontkämpferbund) is a communist group associated with the KPD.">RFB</span>!} Strength: [+ rfb_strength_2 +] thousand
+[? if antifa != 1: <span class="tooltip-text" title="The RFB (Rotfrontkämpferbund) is a communist group associated with the KPD."><span style="color:#700000;">RFB</span></span> ?] Strength: [+ rfb_strength_2 +] thousand
 
-RFB Militarization: [+ rfb_militancy : militancy +]
+[? if antifa != 1: <span style="color:#700000;">RFB</span> ?] Militarization: [+ rfb_militancy : militancy +]
 
-{!<span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP.">Stahlhelm</span>!} Strength: [+ sh_strength_2 +] thousand
+<span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP."><span style="color:#3E88B3;">Stahlhelm</span></span> Strength: [+ sh_strength_2 +] thousand 
 
-Stahlhelm Militarization: [+ sh_militancy : militancy +]
+<span style="color:#3E88B3;">Stahlhelm</span> Militarization: [+ sh_militancy : militancy +]
 
-{!<span class="tooltip-text" title="The SA (Sturmabteilung) is the Nazi paramilitary.">SA</span>!} Strength: [+ sa_strength_2 +] thousand
+<span class="tooltip-text" title="The SA (Sturmabteilung) is the Nazi paramilitary."><span style="color:#7A3C00;">SA</span></span> Strength: [+ sa_strength_2 +] thousand
 
-SA Militarization: [+ sa_militancy : militancy +]
+<span style="color:#7A3C00;">SA</span> Militarization: [+ sa_militancy : militancy +]
 
 = Official military/paramilitaries
 
