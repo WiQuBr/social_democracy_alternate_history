@@ -77,7 +77,7 @@ Economic growth: [+ economic_growth_2 +]%
 
 <span class="tooltip-text" title="Center Party"><span style="color:#000000;">Z</span></span>: [+ z_relation : relationships +]
 
-[? if ddp_name = "DDP":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if ddp_name = "DStP":<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_relation : relationships +]
+[? if ddp_name != "DStP":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**DDP**</span>?][? if ddp_name = "DStP":<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_relation : relationships +]
 
 <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: [+ dvp_relation : relationships +]
 
@@ -157,23 +157,23 @@ Q.socialism_disp = Math.round(Q.socialism);
 
 (if the election were to be held now):
 
-SPD: [+ spd_votes +]%
+<span style="color: #c00000;">**SPD**</span>: [+ spd_votes +]%
 
-[? if sapd_formed: SAPD: [+ sapd_votes +]% ?]
+[? if sapd_formed: <span style="color: #9B0000;">**SAPD**</span>: [+ sapd_votes +]% ?]
 
-Z + BVP: [+ z_votes +]%
+<span style="color: #000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span>: [+ z_votes +]%
 
-KPD: [+ kpd_votes +]%
+<span style="color: #700000;">**KPD**</span>: [+ kpd_votes +]%
 
-[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ ddp_votes +]%
+[? if ddp_name != "DStP": <span style="color: #D3C24D;">**DDP**</span>?][? if ddp_name = "DStP": <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_votes +]%
 
-DVP: [+ dvp_votes +]%
+<span style="color: #C0A054;">**DVP**</span>: [+ dvp_votes +]%
 
-DNVP: [+ dnvp_votes +]%
+<span style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_votes +]%
 
-NSDAP: [+ nsdap_votes +]%
+<span style="color: #7A3C00;">**NSDAP**</span>: [+ nsdap_votes +]%
 
-Others: [+ other_votes +]%
+**Others**: [+ other_votes +]%
 
 **Detailed results for each demographic**
 
