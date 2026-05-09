@@ -1,10 +1,8 @@
 title: We go into resistance
 subtitle: The <span style="color: #7A3C00;">**Nazis**</span> took power and we have an obligation to fight against them
 new-page: true
-view-if: year = 1928 and month = 2
-frequency: 1000
+view-if: resistance_enabled = 1 and wels_seen = 1
 max-visits: 1
-tags: event
 
 <span style="color: #7A3C00;">**Hitler**</span> took power and we have to build a resistance against him.
 
