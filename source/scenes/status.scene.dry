@@ -122,9 +122,9 @@ if (Q.sa_strength) {
 
 [? if resistance != 1 and antifa != 1 and rb_exit != 1: <span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> ?][? if resistance != 1 and antifa != 1 and rb_exit == 1: <span style="color:#DD0000;">Reichsbanner</span> ?][? if resistance == 1 and antifa != 1: <span style="color:#000000;">Res</span><span style="color:#DD0000;">ista</span><span style="color:#FFCC00;">nce</span> ?] [? if antifa == 1: <span style="color:#DD0000;">Ant</span><span style="color:#000000;">ifa</span> ?] Militarization: [+ rb_militancy : militancy +]
 
-[? if antifa != 1: <span class="tooltip-text" title="The RFB (Rotfrontkämpferbund) is a communist group associated with the KPD."><span style="color:#700000;">RFB</span></span> ?] Strength: [+ rfb_strength_2 +] thousand
+[? if antifa != 1: <span class="tooltip-text" title="The RFB (Rotfrontkämpferbund) is a communist group associated with the KPD."><span style="color:#700000;">RFB</span></span> Strength: [+ rfb_strength_2 +] thousand ?]
 
-[? if antifa != 1: <span style="color:#700000;">RFB</span> ?] Militarization: [+ rfb_militancy : militancy +]
+[? if antifa != 1: <span style="color:#700000;">RFB</span> Militarization: [+ rfb_militancy : militancy +] ?]
 
 <span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP."><span style="color:#3E88B3;">Stahlhelm</span></span> Strength: [+ sh_strength_2 +] thousand 
 
