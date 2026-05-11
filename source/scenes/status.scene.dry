@@ -75,7 +75,7 @@ Economic growth: [+ economic_growth_2 +]%
 = Inter-party Relations
 
 
-<span class="tooltip-text" title="Center Party"><span style="color:#000000;">Z</span></span>: [+ z_relation : relationships +]
+<span class="tooltip-text" title="Center Party"><span style="color:#000000;">**Z**</span></span>: [+ z_relation : relationships +]
 
 [? if ddp_name != "DStP":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**DDP**</span>?][? if ddp_name = "DStP":<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_relation : relationships +]
 
