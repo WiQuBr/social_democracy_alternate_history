@@ -304,7 +304,7 @@ go-to: coalition_menu
 
 Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span>): [+ grand_coalition +]%
 
-<span style="color: #DD0000;">Social</span><span style="color: #FFCC00;">liberal</span> Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span>) : [+ socialliberal_coalition +]%
+<span style="color: #DD0000;">Social</span><span style="color: #D3C24D;">liberal</span> Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span>) : [+ socialliberal_coalition +]%
 
 Bourgeois Coalition (<span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span> + **Others**): [+ bourgeois_coalition +]%
 
