@@ -46,7 +46,7 @@ go-to: menu
 
 **1919**: The Spartacist Uprising, in which <span style="color: #700000;">**communist**</span> workers attempt to seize control of government, is launched. The uprising is defeated by the <span style="color: #c00000;">**Social Democratic**</span> government, now led by President Friedrich Ebert and Chancellor Philipp Scheidemann, with the support of the far-right Freikorps militas. The two key leaders of the uprising, Rosa Luxemburg and Karl Liebknecht, are murdered by the Freikorps. The Treaty of Versailles is signed under great protest from all political factions in Germany, officially ending the Great War. The <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Constitution is signed. The first "<span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Coalition" government is formed, led by the <span style="color: #c00000;">**SPD**</span>, <span style="color: #D3C24D;">**DDP**</span>, and <span style="color: #000000;">**Center (Z)**</span> parties.
 
-**1920**: The Kapp Putsch, an attempt by reactionary actors within the military to take power, is launched, and is defeated by the workers with a general strike. This is followed by left-wing uprisings in the Ruhr, which are defeated by the Reichswehr and Freikorps. The <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Coalition is defeated in the elections, with the right and far left increasing in vote share. Elected governments in this period are very unstable, often only lasting a matter of months. There is a split in the <span style="color: #D47B9B;">**USPD**</span>, with the majority faction joining with the <span style="color: #700000;">**KPD**</span> and the Soviet Union's Communist International (Comintern) alliance.
+**1920**: The Kapp Putsch, an attempt by reactionary actors within the military to take power, is launched, and is defeated by the workers with a general strike. This is followed by left-wing uprisings in the Ruhr, which are defeated by the Reichswehr and Freikorps. The <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Coalition is defeated in the elections, with the right and far left increasing in vote share. Elected governments in this period are very unstable, often only lasting a matter of months. There is a split in the <span style="color: #D47B9B;">**USPD**</span>, with the majority faction joining with the <span style="color: #700000;">**KPD**</span> and the <span style="color: #700000;">**Soviet Union's Communist International (Comintern)**</span> alliance.
 
 **1921**: <span style="color: #700000;">**Communist**</span> uprisings in Saxony and Hamburg are defeated. Matthias Erzberger, the <span style="color: #000000;">**Center Party**</span> leader who signed the Versailles Treaty, is assassinated.
 
@@ -173,7 +173,7 @@ SPD: [+ spd_votes +]%
 KPD: [+ kpd_votes +]%
 
 # 1928: 5, 1930: 4 (as DstP)
-<span style="color: #D3C24D;">**[+ ddp_name +]**</span>: [+ ddp_votes +]%
+[? if ddp_name != "DStP" : <span style="color: #D3C24D;">**DDP**</span> ?][? if ddp_name = "DStP" : <span style="color: #D3C24D;">**DStP**</span> ?]: [+ ddp_votes +]%
 
 # 1928: 9, 1930: 5
 DVP: [+ dvp_votes +]%
@@ -244,7 +244,7 @@ go-to: menu
 
 **Paramilitary groups:**
 
-**<span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> <span style="color:#000000;">Schwarz</span>-<span style="color:#DD0000;">Rot</span>-<span style="color:#FFCC00;">nner</span>**: The <span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> is an organization affiliated with all of the democratic parties - the <span style="color: #c00000;">**SPD**</span>, <span style="color: #000000;">**Z**</span>, and [? if ddp_name != "DStP" : <span style="color: #D3C24D;">**DDP**</span> ?][? if ddp_name = "DStP" : <span style="color: #D3C24D;">**DStP**</span> ?], but primarily with the <span style="color: #c00000;">**SPD**</span>. Historically, this has been an unarmed organization.
+**<span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> <span style="color:#000000;">Schwarz</span>-<span style="color:#DD0000;">Rot</span>-<span style="color:#FFCC00;">Gold</span>**: The <span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> is an organization affiliated with all of the democratic parties - the <span style="color: #c00000;">**SPD**</span>, <span style="color: #000000;">**Z**</span>, and [? if ddp_name != "DStP" : <span style="color: #D3C24D;">**DDP**</span> ?][? if ddp_name = "DStP" : <span style="color: #D3C24D;">**DStP**</span> ?], but primarily with the <span style="color: #c00000;">**SPD**</span>. Historically, this has been an unarmed organization.
 
 Strength: [+ rb_strength +] thousand
 
@@ -289,7 +289,7 @@ Overall dissent: [+ dissent_percent : dissent +]
 
 **Left**
 
-Many leftists are former members of the <span style="color: #D47B9B;">USPD</span> (the left-wing, anti-war <span style="color: #D47B9B;">Independent Social Democratic Party</span>), or are young radicals. Many are interested in closer cooperation with the KPD, and some support extraparliamentary action.
+Many leftists are former members of the <span style="color: #D47B9B;">USPD</span> (the left-wing, anti-war <span style="color: #D47B9B;">Independent Social Democratic Party</span>), or are young radicals. Many are interested in closer cooperation with the <span style="color: #700000;">**KPD**</span>, and some support extraparliamentary action.
 
 Strength: [+ left_strength : strength +]
 
