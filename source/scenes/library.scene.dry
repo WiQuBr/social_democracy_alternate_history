@@ -23,7 +23,7 @@ Herein contains relevant information about the government and politics of the Ge
 @government
 go-to: menu
 
-The German Republic, called by some of our detractors as the "Weimar Republic", is a parliamentary republic with a somewhat weak president and a strong parliament, called the Reichstag. The Reichstag is responsible for governing, while the President has a largely ceremonial role but also has some important governing responsibilities.
+The German Republic, called by some of our detractors as the "<span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Republic", is a parliamentary republic with a somewhat weak president and a strong parliament, called the Reichstag. The Reichstag is responsible for governing, while the President has a largely ceremonial role but also has some important governing responsibilities.
 
 The Reichstag is elected based on a proportional representation system, giving parties seats roughly proportional to their vote share in each electoral district. The Reichstag then elects the Chancellor and the cabinet by a majority vote, who are responsible for government. A majority vote-of-no-confidence can remove the current government.
 
@@ -34,9 +34,9 @@ Germany is divided into a number of states, each of which have their own governm
 @weimar_timeline
 go-to: menu
 
-= Timeline of the SPD and the Republic (until 1928)
+= Timeline of the <span style="color: #c00000;">**SPD**</span> and the Republic (until 1928)
 
-**1875**: The SPD is formed as a merger of the General German Workers' Association, founded by Ferdinand Lassalle, and the Social Democratic Workers' Party of Germany, led by Wilhelm Liebknecht and August Bebel. Eventually, the SPD grows to become the largest party in the German Empire.
+**1875**: The <span style="color: #c00000;">**SPD**</span> is formed as a merger of the General German Workers' Association, founded by Ferdinand Lassalle, and the Social Democratic Workers' Party of Germany, led by Wilhelm Liebknecht and August Bebel. Eventually, the SPD grows to become the largest party in the German Empire.
 
 **1914**: The Great War begins. The SPD votes in favor of war credits, with substantial internal dissent. This begins a policy of *Burgfriedenspolitik*, a general peace between all political parties and trade unions.
 
@@ -167,13 +167,13 @@ SPD: [+ spd_votes +]%
 [? if sapd_formed: SAPD: [+ sapd_votes +]% ?]
 
 # 1928: 15, 1930: 15, 1932: 
-Z + BVP: [+ z_votes +]%
+<span style="color:#000000;">**Z**</span> + BVP: [+ z_votes +]%
 
 # 1928: 10, 1930: 13
 KPD: [+ kpd_votes +]%
 
 # 1928: 5, 1930: 4 (as DstP)
-[+ ddp_name +]: [+ ddp_votes +]%
+<span style="color: #D3C24D;">**[+ ddp_name +]**</span>: [+ ddp_votes +]%
 
 # 1928: 9, 1930: 5
 DVP: [+ dvp_votes +]%
@@ -204,35 +204,35 @@ Catholics: SPD: [+ catholics_spd_display +]%, Z: [+ catholics_z_display +]%, KPD
 @parties
 go-to: menu
 
-**SPD** - *Sozialdemokratische Partei Deutschlands* (Social Democratic Party of Germany) - this is us. We are a socialist and democratic party of the working class. We are the heirs of the legacy of Marx and Engels, Lassalle and Bebel. We are the foremost defenders of the Republic. The modern SPD was formed from a merger of the "Majority" SPD, which supported the Great War, and the "Independent" SPD or USPD, which opposed the war.
+<span style="color: #c00000;">**SPD**</span> - <span style="color: #c00000;">*Sozialdemokratische Partei Deutschlands*</span> (<span style="color: #c00000;">Social Democratic Party of Germany</span>) - this is us. We are a socialist and democratic party of the working class. We are the heirs of the legacy of Marx and Engels, Lassalle and Bebel. We are the foremost defenders of the Republic. The modern <span style="color: #c00000;">SPD</span> was formed from a merger of the "Majority" <span style="color: #c00000;">SPD</span>, which supported the Great War, and the "Independent" <span style="color: #c00000;">SPD</span> or <span style="color: #D47B9B;">**USPD**</span>, which opposed the war.
 
-**Z** - *Zentrumspartei* (Center Party) - a centrist to center-right Catholic party that supports the Republic, and has historically supported many of our labor, welfare, and anti-militarist priorities. They have often been in coalitions with us. They are often associated with the **BVP** (Bavarian People's Party), which represents Catholics in Bavaria. [? if year >= 1930 or chancellor = "Brüning" : They have appeared to take a more conservative turn recently, with the rise of Brüning and the party leader, Ludwig Kaas. ?]
+<span style="color: #000000;">**Z**</span> - <span style="color: #000000;">*Zentrumspartei*</span> (<span style="color: #000000;">Center Party</span>) - a centrist to center-right Catholic party that supports the Republic, and has historically supported many of our labor, welfare, and anti-militarist priorities. They have often been in coalitions with us. They are often associated with the <span style="color: #A2D8E0;">**BVP**</span> (<span style="color: #A2D8E0;">Bavarian People's Party</span>), which represents Catholics in <span style="color: #00CCFF;">Bavaria</span> [? if year >= 1930 or chancellor = "Brüning" : They have appeared to take a more conservative turn recently, with the rise of Brüning and the party leader, Ludwig Kaas. ?]
 
 Current relations: [+ z_relation : relationships +]
 
-**[+ ddp_name +]** – *[? if ddp_name != "DStP" : Deutsche Demokratische Partei ?][? if ddp_name = "DStP" : Deutsche Staatspartei ?]* [? if ddp_name != "DStP" : (German Democratic Party) ?][? if ddp_name = "DStP" : (German State Party) ?] – a center-left liberal party, popular among the intelligentsia and educated middle class. They have often been in coalitions with us. [? if year >= 1930 : They have recently reformed themselves as the German State Party (DStP). ?]
+<span style="color: #D3C24D;">**[+ ddp_name +]**</span> – *[? if ddp_name != "DStP" : <span style="color: #D3C24D;">Deutsche Demokratische Partei</span> ?][? if ddp_name = "DStP" : <span style="color: #D3C24D;">Deutsche Staatspartei</span> ?]* [? if ddp_name != "DStP" : (<span style="color: #D3C24D;">German Democratic Party</span>) ?][? if ddp_name = "DStP" : (<span style="color: #D3C24D;">German State Party</span>) ?] – a center-left liberal party, popular among the intelligentsia and educated middle class. They have often been in coalitions with us. [? if year >= 1930 : They have recently reformed themselves as the <span style="color: #D3C24D;">German State Party</span> (<span style="color: #D3C24D;">DStP</span>). ?]
 
 Current relations: [+ ddp_relation : relationships +]
 
-**DVP** - *Deutsche Volkspartei* (German People's Party) - a conservative-liberal party, supported by the middle classes and bourgeoisie. We have occasionally been in coalitions.
+<span style="color: #C0A054;">**DVP**</span> - <span style="color: #C0A054;">*Deutsche Volkspartei*</span> (<span style="color: #C0A054;">German People's Party</span>) - a conservative-liberal party, supported by the middle classes and bourgeoisie. We have occasionally been in coalitions.
 
 Current relations: [+ dvp_relation : relationships +]
 
-**DNVP** - *Deutschnationale Volkspartei* (German National People's Party) - a right-wing nationalist-conservative party, with authoritarian, monarchist, and racist elements. It is supported by the former aristocracy, rural landowners, and conservative Lutherans.
+<span style="color: #3E88B3;">**DNVP**</span> - <span style="color: #3E88B3;">*Deutschnationale Volkspartei*</span> (<span style="color: #3E88B3;">German National People's Party</span>) - a right-wing nationalist-conservative party, with authoritarian, monarchist, and racist elements. It is supported by the former aristocracy, rural landowners, and conservative Lutherans.
 
 Current relations: [+ dnvp_relation : relationships +]
 
-**KPD** - *Kommunistische Partei Deutschlands* (German Communist Party) - a radical left-wing offshoot of the SPD that emerged in the aftermath of the German Revolution of 1918, they follow the path of Moscow, opposing parliamentary democracy in favor of a Soviet-style revolution.
+<span style="color: #700000;">**KPD**</span> - <span style="color: #700000;">*Kommunistische Partei Deutschlands*</span> (<span style="color: #700000;">German Communist Party</span>) - a radical left-wing offshoot of the <span style="color: #c00000;">SPD</span> that emerged in the aftermath of the German Revolution of 1918, they follow the path of Moscow, opposing parliamentary democracy in favor of a Soviet-style revolution.
 
 Current relations: [+ kpd_relation : relationships +]
 
-[? if sapd_formed: SAPD - Sozialistische Arbeiterpartei Deutschlands (Socialist Worker's Party of Germany) - a party recently formed in a split from the SPD, the SAPD is essentially an agglomeration of various left-wing splinter groups between the SPD and KPD. ?]
+[? if sapd_formed: <span style="color: #9B0000;">**SAPD**</span> - <span style="color: #9B0000;">*Sozialistische Arbeiterpartei Deutschlands*</span> (<span style="color: #9B0000;">Socialist Worker's Party of Germany</span>) - a party recently formed in a split from the <span style="color: #c00000;">SPD</span>, the <span style="color: #9B0000;">SAPD</span> is essentially an agglomeration of various left-wing splinter groups between the <span style="color: #c00000;">SPD</span> and <span style="color: #700000;">KPD</span>. ?]
 
-**NSDAP** - *Nationalsozialistische Deutsche Arbeiterpartei* - (National Socialist German Worker's Party, or Nazis) - a far-right nationalist and antisemitic party. Led by Adolf Hitler, they attempted a coup in 1923, and were banned for it, but have since been legalized.
+<span style="color: #7A3C00;">**NSDAP**</span> - <span style="color: #7A3C00;">*Nationalsozialistische Deutsche Arbeiterpartei*</span> - (<span style="color: #7A3C00;">National Socialist German Worker's Party</span>, or <span style="color: #7A3C00;">Nazis</span>) - a far-right nationalist and antisemitic party. Led by Adolf Hitler, they attempted a coup in 1923, and were banned for it, but have since been legalized.
 
 Current relations: [+ nsdap_relation : relationships +]
 
-**Other parties** - there is a multitude of small, mostly conservative parties, such as the Economic Party of the German Middle Class, the Farmer's Party, the Agricultural League, and others. Their political position usually lies between the DVP and DNVP. 
+**Other parties** - there is a multitude of small, mostly conservative parties, such as the Economic Party of the German Middle Class, the Farmer's Party, the Agricultural League, and others. Their political position usually lies between the <span style="color: #C0A054;">DVP</span> and <span style="color: #3E88B3;">DNVP</span>. 
 
 @paramilitaries
 on-arrival: {!
