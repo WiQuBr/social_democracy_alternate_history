@@ -1,3 +1,4 @@
+view-if: resistance != 1
 on-arrival: {!
 // Einigkeit - survive on easy without a civil war.
 // Einigkeit und Recht - survive on medium without a civil war.
