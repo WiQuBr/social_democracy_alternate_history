@@ -138,7 +138,7 @@ if (Q.sa_strength) {
 
 = Official military/paramilitaries
 
-Reichswehr: [+ reichswehr_strength +] thousand troops.
+[? if resistance != 1:Reichswehr ?][? if resistance = 1: <span style="color: #7A3C00;">**Wehrmacht**</span> ?]: [+ reichswehr_strength +] thousand troops.
 
 Reichswehr Loyalty: [+ reichswehr_loyalty : loyalty +]
 
@@ -153,6 +153,7 @@ on-arrival: {!
 Q.pro_republic_disp = Math.round(Q.pro_republic);
 Q.nationalism_disp = Math.round(Q.nationalism);
 Q.socialism_disp = Math.round(Q.socialism);
+Q.pro_overthrow_disp = Math.round(Q.pro_overthrow)
 !}
 
 = Projected election results
@@ -193,4 +194,4 @@ Catholics: SPD: [+ catholics_spd_display +]%, [? if sapd_formed: SAPD: [+ cathol
 
 Support for the Republic: [+ pro_republic_disp +]%
 
-[? if resistance = 1: Support for the overthrow of the Nazi regime: [+ pro_overthrow_disp +]% ?]
+[? if resistance = 1: Support for the overthrow of the <span style="color: #7A3C00;">**Nazi**</span> regime: [+ pro_overthrow_disp +]% ?]
