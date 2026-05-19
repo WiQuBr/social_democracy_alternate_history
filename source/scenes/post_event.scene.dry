@@ -15,12 +15,19 @@ for (var c of Q.classes) {
 Q.pro_republic = Math.round(Q.pro_republic);
 Q.nationalism = Math.round(Q.nationalism);
 Q.socialism = Math.round(Q.socialism);
+Q.pro_overthrow = Math.round(Q.pro_overthrow);
 
 if (Q.pro_republic < 0) {
     Q.pro_republic = 0;
 }
 if (Q.pro_republic >= 100) {
     Q.pro_republic = 99;
+}
+if (Q.pro_overthrow < 0) {
+    Q.pro_overthrow = 0;
+}
+if (Q.pro_overthrow >= 100) {
+    Q.pro_overthrow = 99;
 }
 // re-calculate party support
 // calculate normalized class voting for the achievements
