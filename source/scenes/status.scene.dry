@@ -192,3 +192,5 @@ Unemployed: SPD: [+ unemployed_spd_display +]%, [? if sapd_formed: SAPD: [+ unem
 Catholics: SPD: [+ catholics_spd_display +]%, [? if sapd_formed: SAPD: [+ catholics_sapd_display +]%, ?] Z: [+ catholics_z_display +]%, KPD: [+ catholics_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ catholics_ddp_display +]%, DVP: [+ catholics_dvp_display +]%; DNVP: [+ catholics_dnvp_display +]%, NSDAP: [+ catholics_nsdap_display +]%, Others: [+ catholics_other_display +]% 
 
 Support for the Republic: [+ pro_republic_disp +]%
+
+[? if resistance = 1: Support for the overthrow of the Nazi regime: [+ pro_overthrow_disp +]% ?]
