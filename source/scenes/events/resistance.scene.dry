@@ -2,7 +2,7 @@ title: We go into resistance
 subtitle: The Nazis took power and we have an obligation to fight against them
 new-page: true
 view-if: resistance_enabled = 1 and wels_seen = 1
-on-arrival: nazi_year = 0; nazi_month = 0
+on-arrival: nazi_year = 0; nazi_month = 0; pro_overthrow = 2; nazi_suspicion = 0;
 max-visits: 1
 
 <span style="color: #7A3C00;">**Hitler**</span> took power and we have to build a resistance against him.
