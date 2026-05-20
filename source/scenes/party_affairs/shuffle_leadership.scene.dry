@@ -583,7 +583,7 @@ Carlo Mierendorff is now an advisor.
 
 @add_schumacher
 title: Kurt Schumacher
-subtitle: Kurt Schumacher is a Great War veteran and energetic speaker for the <span style="color: #c00000;">**social-democratic**</span> cause, and favors reformist policies. {!<br><br>!}[? if difficulty < 0 : Actions - Emergency Fundraising, Building the [? if resistance != 1 and antifa != 1 and rb_exit != 1: <span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span> ?][? if resistance != 1 and antifa != 1 and rb_exit == 1: <span style="color:#DD0000;">Reichsbanner</span> ?], Addressing the Economic Crisis ?]
+subtitle: Kurt Schumacher is a Great War veteran and energetic speaker for the <span style="color: #c00000;">**social-democratic**</span> cause, and favors reformist policies. {!<br><br>!}[? if difficulty < 0 : Actions - Emergency Fundraising, [? if resistance != 1 and antifa != 1 and rb_exit != 1: Building the <span style="color:#000000;">Reic</span><span style="color:#DD0000;">hsba</span><span style="color:#FFCC00;">nner</span>, ?][? if resistance != 1 and antifa != 1 and rb_exit == 1: Building the <span style="color:#DD0000;">Reichsbanner</span>, ?] Addressing the Economic Crisis ?]
 is-card: true
 card-image: img/portraits/SchumacherKurt.jpg
 tags: neorev_advisor
