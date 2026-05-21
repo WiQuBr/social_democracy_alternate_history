@@ -1,1 +1,28 @@
-hi
+title: Assassination Plots Against <span style="color: #7A3C00;">**Hitler**</span> at the Bürgerbräukeller?
+subtitle: An unknown opponent of the <span style="color: #7A3C00;">**Nazis**</span> is planning an assassination attempt on <span style="color: #7A3C00;">**Hitler**</span>!
+view-if: year == 1938 and month >= 11 and resistance = 1
+new-page: true
+max-visits: 1
+on-arrival: pro_overthrow += 2;
+tags: event
+
+= Assassination Plots Against <span style="color: #7A3C00;">**Hitler**</span> at the Bürgerbräukeller?
+
+The unknown person does not yet want anyone to know about the plans.
+
+Internally, we are discussing whether to support him.
+
+- @support: Support him!
+- @observe: We are observing the developments surrounding these plans.
+
+@support
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; support_elser = 1; rfb_militancy += 0.05 if antifa = 1; rb_militancy += 0.02; nazi_suspicion += 2;
+
+We support his plans! The <span style="color: #7A3C00;">**Nazis**</span> are becoming suspicious of our activities. We must remain cautious.
+
+@observe
+
+Interesting developments...
