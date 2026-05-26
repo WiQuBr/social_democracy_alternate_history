@@ -1,7 +1,7 @@
 title: The <span style="color: #7A3C00;">**Fuehrer State**</span>...
 subtitle: The <span style="color: #7A3C00;">**Fuehrer State**</span> will be established
 new-page: true
-view-if: nazi_year == 1 and nazi_month >= 3 and chancellor_party = "NSDAP" and (president = "Hitler" or president = "Göring")
+view-if: nazi_year == 1 and nazi_month >= 3 and chancellor_party = "NSDAP" and (president = "Hitler" or president = "Göring") and fuehrer_state != 1
 on-arrival: president = "Hitler"; fuehrer_state = 1
 
 
