@@ -1,6 +1,6 @@
 title: Assassination Plots Against <span style="color: #7A3C00;">**Hitler**</span> at the Bürgerbräukeller?
 subtitle: An unknown opponent of the <span style="color: #7A3C00;">**Nazis**</span> is planning an assassination attempt on <span style="color: #7A3C00;">**Hitler**</span>!
-view-if: year == 1938 and month >= 11 and resistance = 1
+view-if: (nazi_year == 5 and nazi_month >= 7 or nazi_year == 6) and month >= 11 and resistance = 1
 new-page: true
 max-visits: 1
 on-arrival: pro_overthrow += 2;
