@@ -1,0 +1,18 @@
+title: The Death of Hindenburg
+subtitle: The President has died...
+new-page: true
+view-if: year = 1934 and month >= 7 and president = "Hindenburg" and chancellor_party = "NSDAP"
+on-arrival: president = "Hitler"; fuehrer_state = 1
+max-visits: 1
+face-image: img/Hindenburg_head.jpg
+tags: event
+
+= The Death of Hindenburg
+
+President Paul von Hindenburg has passed away at age 86. An era of history is closing, and the future has never looked darker.
+
+<span style="color: #7A3C00;">**Adolf Hitler**</span> is assuming the powers of the Presidency while retaining the office of Chancellor. This marks the final end of democracy in Germany.
+
+- @kurwa: Well... this is bad.
+
+@kurwa
