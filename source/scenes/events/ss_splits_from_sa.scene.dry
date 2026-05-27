@@ -2,8 +2,9 @@ title: The <span style="color: #7A3C00;">**SS**</span> (<span style="color: #7A3
 subtitle: A new instrument of terror is taking shape.
 view-if: nazi_year == 1 and nazi_month >= 6
 new-page: true
-on-arrival: ss_split = 1; ss_strength = 0.05*sa_strength; ss_militancy = 4*sa_militancy; sa_strength *= 0.94; sa_militancy *= 0.8
+on-arrival: ss_split = 1; ss_strength = sa_strength/20; ss_militancy = 4*sa_militancy; sa_strength *= 0.94; sa_militancy *= 0.8
 tags: event
+max-visits: 1
 
 = The <span style="color: #7A3C00;">**SS**</span> becomes increasingly independent
 
