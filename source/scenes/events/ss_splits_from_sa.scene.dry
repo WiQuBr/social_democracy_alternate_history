@@ -5,7 +5,7 @@ new-page: true
 on-arrival: ss_split = 1; ss_strength = 0.05*sa_strength; ss_militancy = 4*sa_militancy; sa_strength *= 0.94; sa_militancy *= 0.8
 tags: event
 
-= The SS becomes increasingly independent
+= The <span style="color: #7A3C00;">**SS**</span> becomes increasingly independent
 
 Following the “Röhm Putsch” — also known as the “Night of the Long Knives” — the <span style="color: #7A3C00;">**SS**</span> participated in the purge of the <span style="color: #7A3C00;">**SA**</span> leadership and emerged as an increasingly independent organization within the <span style="color: #7A3C00;">**Nazi**</span> regime.
 
