@@ -37,7 +37,7 @@ Internal dissent: [+ dissent_percent : dissent +]
 
 [? if fuehrer_state != 1:Chancellor: ?] [? if chancellor_party == "SPD": <span style="color: #c00000;">[+ chancellor +]</span>?][? if chancellor_party == "Z": <span style="color: #000000;">[+ chancellor +]</span>?][? if chancellor_party == "NSDAP" and fuehrer_state != 1: <span style="color: #7A3C00;">[+ chancellor +]</span>?][? if chancellor_party == "KPD": <span style="color: #700000;">[+ chancellor +]</span>?][? if chancellor_party == "DNVP": <span style="color: #3E88B3;">[+ chancellor +]</span>?][? if chancellor == "Schleicher" or chancellor == "Papen": <span style="color: #808080;">[+ chancellor +]</span>?] [? if chancellor_party == "Z": (<span style="color: #000000;">**Z**</span>)?][? if chancellor_party == "SPD": (<span style="color: #c00000;">**SPD**</span>)?][? if chancellor_party == "KPD": (<span style="color: #700000;">**KPD**</span>)?][? if chancellor_party == "DNVP": (<span style="color: #3E88B3;">**DNVP**</span>)?][? if chancellor_party == "NSDAP" and fuehrer_state != 1:(<span style="color: #7A3C00;">**NSDAP**</span>)?][? if chancellor_party == "I":(<span style="color: #808080;">I</span>)?]
 
-[? if fuehrer_state = 1: Fuehrer: <span style="color: #7A3C00;">Hitler</span> (<span style="color: #7A3C00;">**NSDAP**</span>) ?]
+[? if fuehrer_state = 1: Führer: <span style="color: #7A3C00;">Hitler</span> (<span style="color: #7A3C00;">**NSDAP**</span>) ?]
 
 Reichstag composition:
 
@@ -137,6 +137,10 @@ if (Q.sa_strength) {
 <span class="tooltip-text" title="The SA (Sturmabteilung) is the Nazi paramilitary."><span style="color:#7A3C00;">SA</span></span> Strength: [+ sa_strength_2 +] thousand
 
 <span style="color:#7A3C00;">SA</span> Militarization: [+ sa_militancy : militancy +]
+
+[? if ss_split == 1: <span class="tooltip-text" title="The SS (Schutzstaffel) is an elite Nazi organization loyal directly to Hitler and increasingly central to the regime's terror apparatus."><span style="color:#7A3C00;">SS</span></span> Strength: [+ ss_strength_2 +] thousand ?]
+
+[? if ss_split == 1: <span style="color:#7A3C00;">SS</span> Militarization: [+ ss_militancy : militancy +] ?]
 
 = Official military/paramilitaries
 
