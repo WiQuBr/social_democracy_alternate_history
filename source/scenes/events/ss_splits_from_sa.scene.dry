@@ -1,0 +1,12 @@
+title: The <span style="color: #7A3C00;">**SS**</span> (<span style="color: #7A3C00;">*Schutzstaffel*</span>) asserts its independence from the <span style="color: #7A3C00;">**SA**</span> (<span style="color: #7A3C00;">*Sturmabteilung*</span>)!
+subtitle: A new instrument of terror is taking shape.
+view-if: nazi_year == 1 and nazi_month >= 6
+new-page: true
+on-arrival: ss_split = 1; ss_strength = 0.05*sa_strength; ss_militancy = 4*sa_militancy; sa_strength *= 0.94; sa_militancy *= 0.8
+tags: event
+
+= The SS becomes increasingly independent
+
+Following the “Röhm Putsch” — also known as the “Night of the Long Knives” — the <span style="color: #7A3C00;">**SS**</span> participated in the purge of the <span style="color: #7A3C00;">**SA**</span> leadership and emerged as an increasingly independent organization within the <span style="color: #7A3C00;">**Nazi**</span> regime.
+
+Under <span style="color: #7A3C00;">*Heinrich Himmler*</span>, the black-uniformed organization is rapidly transforming into one of the regime’s most dangerous instruments of terror.
