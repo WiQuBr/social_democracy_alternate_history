@@ -91,7 +91,7 @@ Economic growth: [+ economic_growth_2 +]%
 
 <span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)"><span style="color:#7A3C00;">**NSDAP**</span></span>: [+ nsdap_relation : relationships +]
 
-= Internal Factions of the SPD
+= Internal Factions of the <span style="color: #c00000;">**SPD**</span>
 
 {!<span class="tooltip-text" title="The Left is interested in radical, transformative policies and cooperation with the KPD.">Left</span>!} strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
 
@@ -133,9 +133,9 @@ if (Q.ss_strength) {
 
 [? if antifa != 1: <span style="color:#700000;">RFB</span> ?] [? if antifa = 1: <span style="color:#DD0000;">Antifa</span> <span style="color:#000000;">Partisans</span> ?] Militarization: [+ rfb_militancy : militancy +]
 
-<span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP."><span style="color:#3E88B3;">Stahlhelm</span></span> Strength: [+ sh_strength_2 +] thousand 
+[? if stahlhelm_sa_seen != 1: <span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP."><span style="color:#3E88B3;">Stahlhelm</span></span> Strength: [+ sh_strength_2 +] thousand ?]
 
-<span style="color:#3E88B3;">Stahlhelm</span> Militarization: [+ sh_militancy : militancy +]
+[? if stahlhelm_sa_seen != 1: <span style="color:#3E88B3;">Stahlhelm</span> Militarization: [+ sh_militancy : militancy +] ?]
 
 <span class="tooltip-text" title="The SA (Sturmabteilung) is the Nazi paramilitary."><span style="color:#7A3C00;">SA</span></span> Strength: [+ sa_strength_2 +] thousand
 
@@ -177,7 +177,7 @@ Q.pro_overthrow_disp = Math.round(Q.pro_overthrow)
 
 <span style="color: #700000;">**KPD**</span>: [+ kpd_votes +]%
 
-[? if ddp_name != "DStP": <span style="color: #D3C24D;">**DDP**</span>?][? if ddp_name = "DStP": <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_votes +]%
+[? if ddp_dstp_seen != 1: <span style="color: #D3C24D;">**DDP**</span>?][? if ddp_dstp_seen == 1: <span style="color: #D3C24D;">**DStP**</span>?]: [+ ddp_votes +]%
 
 <span style="color: #C0A054;">**DVP**</span>: [+ dvp_votes +]%
 
