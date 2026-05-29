@@ -16,6 +16,7 @@ Q.rural = 25; // agriculture and forestry employment... but many of those are pr
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 8.6;
 Q.catholics = 30;
+ddp_name = "DDP";
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
@@ -89,6 +90,7 @@ Q.rural = 25; // agriculture and forestry employment... but many of those are pr
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 20;
 Q.catholics = 30;
+ddp_name = "DDP";
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
@@ -171,6 +173,7 @@ Q.rural = 25; // agriculture and forestry employment... but many of those are pr
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 33;
 Q.catholics = 30;
+Q.ddp_name = "DStP";
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
@@ -284,36 +287,36 @@ The electoral system is essentially proportional, with the proportion of Reichst
 **Election results:**
 
 # 1928: 30, 1930: 25, 1932: 22
-SPD: [+ spd_r +]
+<span style="color: #c00000;">**SPD**</span>: [+ spd_r +]
 
 # 1928: 15, 1930: 15, 1932: 
-Z + BVP: [+ z_r +]
+<span style="color:#000000;">**Z**</span> + BVP: [+ z_r +]
 
 # 1928: 10, 1930: 13
-KPD: [+ kpd_r +]
+<span style="color: #700000;">**KPD**</span>: [+ kpd_r +]
 
 # 1928: 5, 1930: 4 (as DstP)
-DDP: [+ ddp_r +]
+<span style="color: #D3C24D;">**[+ ddp_name +]**</span>: [+ ddp_r +]
 
 # 1928: 9, 1930: 5
-DVP: [+ dvp_r +]
+<span style="color: #C0A054;">**DVP**</span>: [+ dvp_r +]
 
 # 1928: 14, 1930: 7
-DNVP: [+ dnvp_r +]
+<span style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_r +]
 
 # 1928: 3, 1930: 18
-NSDAP: [+ nsdap_r +]
+<span style="color: #7A3C00;">**NSDAP**</span>: [+ nsdap_r +]
 
 # 1928: 9, 1930: 10
-Other: [+ other_r +]
+**Other**: [+ other_r +]
 
 **Potential coalitions:**
 
-Weimar Coalition (SPD + Z + DDP): [+ weimar_coalition +]
+Weimar Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span>): [+ weimar_coalition +]
 
-Grand Coalition (SPD + Z + BVP + DDP + DVP): [+ grand_coalition +]
+Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span>): [+ grand_coalition +]
 
-Bourgeois Coalition (Z + BVP + DDP + DVP + Others): [+ bourgeois_coalition +]
+Bourgeois Coalition (<span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span> + **Others**): [+ bourgeois_coalition +]
 
-Right-wing Coalition (Z + BVP + DVP + Others + DNVP): [+ right_coalition +]
+Right-wing Coalition (<span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #C0A054;">**DVP**</span> + **Others** + <span style="color: #3E88B3;">**DNVP**</span>): [+ right_coalition +]
 
