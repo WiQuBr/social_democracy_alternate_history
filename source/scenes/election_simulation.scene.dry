@@ -16,7 +16,6 @@ Q.rural = 25; // agriculture and forestry employment... but many of those are pr
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 8.6;
 Q.catholics = 30;
-ddp_name = "DDP";
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
@@ -90,7 +89,6 @@ Q.rural = 25; // agriculture and forestry employment... but many of those are pr
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 20;
 Q.catholics = 30;
-ddp_name = "DDP";
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
@@ -173,7 +171,6 @@ Q.rural = 25; // agriculture and forestry employment... but many of those are pr
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 33;
 Q.catholics = 30;
-Q.ddp_name = "DStP";
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
@@ -296,7 +293,7 @@ The electoral system is essentially proportional, with the proportion of Reichst
 <span style="color: #700000;">**KPD**</span>: [+ kpd_r +]
 
 # 1928: 5, 1930: 4 (as DstP)
-<span style="color: #D3C24D;">**[+ ddp_name +]**</span>: [+ ddp_r +]
+<span style="color: #D3C24D;">**DDP**</span>: [+ ddp_r +]
 
 # 1928: 9, 1930: 5
 <span style="color: #C0A054;">**DVP**</span>: [+ dvp_r +]
@@ -312,11 +309,11 @@ The electoral system is essentially proportional, with the proportion of Reichst
 
 **Potential coalitions:**
 
-Weimar Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span>): [+ weimar_coalition +]
+Weimar Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #D3C24D;">**DDP**</span>): [+ weimar_coalition +]
 
-Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span>): [+ grand_coalition +]
+Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**DDP**</span> + <span style="color: #C0A054;">**DVP**</span>): [+ grand_coalition +]
 
-Bourgeois Coalition (<span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span> + **Others**): [+ bourgeois_coalition +]
+Bourgeois Coalition (<span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #D3C24D;">**DDP**</span> + <span style="color: #C0A054;">**DVP**</span> + **Others**): [+ bourgeois_coalition +]
 
 Right-wing Coalition (<span style="color:#000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span> + <span style="color: #C0A054;">**DVP**</span> + **Others** + <span style="color: #3E88B3;">**DNVP**</span>): [+ right_coalition +]
 
