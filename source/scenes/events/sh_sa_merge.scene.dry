@@ -1,0 +1,11 @@
+title: The <span style="color: #3E88B3;">**Stahlhelm**</span> merges with the <span style="color: #7A3C00;">**SA**</span> (<span style="color: #7A3C00;">*Sturmabteilung*</span>)!
+subtitle:
+view-if: nazi_year == 2 and nazi_month >= 8
+new-page: true
+on-arrival: stahlhelm_sa_seen = 1; sa_militancy = (sa_militancy * (sa_strength / (sa_strength + sh_strength))) + (sh_militancy * (sh_strength / (sa_strength + sh_strength))); sa_strength = sa_strength + sh_strength; sh_strength = 0; sh_militancy = 0;
+tags: event
+max-visits: 1
+
+= The <span style="color: #3E88B3;">**Stahlhelm**</span> and its members will now become part of the <span style="color: #7A3C00;">**SA**</span>!
+
+What must be united shall now be united...
