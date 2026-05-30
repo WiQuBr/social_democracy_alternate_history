@@ -55,7 +55,7 @@ We have called for new elections, set for [+ next_election_month : month +] [+ n
 
 @skip_month
 title: Take a month vacation
-subtitle: Surely the political situation will improve on its own.
+subtitle: Surely the political situation will improve on its own...
 on-arrival: month_actions += 1
 
 We will continue doing absolutely nothing. What is the worst that could possibly happen?
