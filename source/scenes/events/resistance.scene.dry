@@ -2,10 +2,11 @@ title: We go into resistance
 subtitle: The <span style="color: #7A3C00;">**Nazis**</span> took power and we have an obligation to fight against them
 new-page: true
 view-if: resistance_enabled = 1 and wels_seen = 1
-on-arrival: nazi_year = 0; nazi_month = 0; pro_overthrow = 2; nazi_suspicion = 0;
+on-arrival: nazi_year = 0; nazi_month = 0; pro_overthrow = 2; nazi_suspicion = 0; rb_strength *= 0.05; rb_militancy *= 3; rfb_strength *= 0.3; rfb_militancy *= 3
+tags: event
 max-visits: 1
 
-<span style="color: #7A3C00;">**Hitler**</span> took power and we have to build a resistance against him.
+<span style="color: #7A3C00;">**Hitler**</span> has taken power and we must organize resistance against his regime. Many members of our paramilitary organizations have already fled Germany, gone into hiding, or been imprisoned by the <span style="color: #7A3C00;">**Nazis**</span>.
 
 - @unite_against_fascism: Unite with the <span style="color: #700000;">**KPD**</span> against the <span style="color: #7A3C00;">**Nazis**</span>!
 - @stay_alone: Only build a resistance with the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Parties.
@@ -15,9 +16,8 @@ unavailable-subtitle: [? if kpd_relation < 30: The <span style="color: #700000;"
 choose-if: kpd_relation >= 30 
 on-arrival: antifa = 1; resistance = 1
 
-We found the Antifascist Action (Antifaschistische Aktion (<span style="color:#DD0000;">Ant</span><span style="color:#000000;">ifa</span>)) with the <span style="color: #700000;">**KPD**</span> to fight against the <span style="color: #7A3C00;">**Nazis**</span>.
-
+Together with the <span style="color: #700000;">**KPD**</span>, we establish the Antifaschistische Aktion (Antifaschistische Aktion (<span style="color:#DD0000;">Ant</span><span style="color:#000000;">ifa</span>)) to resist <span style="color: #7A3C00;">**Nazi**</span> rule.
 @stay_alone 
 on-arrival: resistance = 1
 
-We don't want to cooperate with the radical <span style="color: #700000;">**Communists**</span> from the <span style="color: #700000;">**KPD**</span>. [? if kpd_relation < 30: The <span style="color: #700000;">**Communists**</span> don't want to cooperate with us either. ?]
+We refuse to subordinate ourselves to the <span style="color: #700000;">**Communists**</span>. The struggle against Hitler must be fought in defense of democracy and the Republic. [? if kpd_relation < 30: The <span style="color: #700000;">**Communists**</span> don't want to cooperate with us either. ?]
