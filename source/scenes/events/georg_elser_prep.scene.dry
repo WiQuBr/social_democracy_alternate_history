@@ -1,0 +1,36 @@
+title: Preparations for an Assassination Attempt on <span style="color: #7A3C00;">**Hitler**</span> Begin
+subtitle: Georg Elser, an opponent of the <span style="color: #7A3C00;">**Nazi**</span> regime, is preparing an assassination attempt on <span style="color: #7A3C00;">**Hitler**</span>!
+view-if: (nazi_year == 6 and nazi_month >= 4 or nazi_year == 7) and month >= 8 and resistance = 1
+new-page: true
+max-visits: 1
+on-arrival: pro_overthrow += 3; 
+tags: event
+
+= Preparations for an Assassination Attempt on <span style="color: #7A3C00;">**Hitler**</span> Begin!
+
+Internally, we are discussing whether to support him[? if support_elser = 1: more than before. ?]
+
+- @support_2: Support him even more!
+- @support_3: Support his plans.
+- @nothing: We will not support these preparations.
+
+@support_2
+subtitle: -2 resources
+choose-if: resources >= 2 and support_elser = 1
+unavailable-subtitle: [? if resources < 1: Not enough resources. ?][? if support_elser != 1: We did not support him yet. ?]
+on-arrival: resources -= 2; support_elser_2 = 1; rfb_militancy += 0.05 if antifa = 1; rb_militancy += 0.02; nazi_suspicion += 2;
+
+We support his plans even more! The <span style="color: #7A3C00;">**Nazis**</span> are becoming suspicious of our activities. We must remain cautious.
+
+@support_3
+subtitle: -1 resources
+choose-if: resources >= 1
+view-if: support_elser != 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; support_elser = 1; rfb_militancy += 0.05 if antifa = 1; rb_militancy += 0.02; nazi_suspicion += 2;
+
+We support his plans! The <span style="color: #7A3C00;">**Nazis**</span> are becoming suspicious of our activities. We must remain cautious.
+
+@nothing
+
+[? if support_elser != 1: We will not take part in an assassination attempt. Nevertheless, we will not stop him. ?][? if support_elser == 1: While we support the plan, we will not directly assist in the preparations. We fear that if Elser fails, the consequences for our movement could be severe. ?]
