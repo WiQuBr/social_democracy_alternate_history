@@ -2,7 +2,7 @@ title: The <span style="color: #7A3C00;">**Fuehrer State**</span>...
 subtitle: The <span style="color: #7A3C00;">**Fuehrer State**</span> will be established
 new-page: true
 view-if: nazi_year == 1 and nazi_month >= 3 and chancellor_party = "NSDAP" and (president = "Hitler" or president = "Göring") and fuehrer_state != 1
-on-arrival: president = "Hitler"; fuehrer_state = 1; fuehrer = "Adolf Hitler";
+on-arrival: president = "Hitler";
 
 
 <span style="color: #7A3C00;">**Adolf Hitler**</span> is assuming the powers of the Presidency while retaining the office of Chancellor. This marks the final end of democracy in Germany.
@@ -10,3 +10,4 @@ on-arrival: president = "Hitler"; fuehrer_state = 1; fuehrer = "Adolf Hitler";
 - @kurwa: Well... this is bad.
 
 @kurwa
+on-arrival: fuehrer_state = 1; fuehrer = "Adolf Hitler";
