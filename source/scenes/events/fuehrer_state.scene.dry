@@ -5,7 +5,7 @@ view-if: nazi_year == 1 and nazi_month >= 3 and chancellor_party = "NSDAP" and (
 on-arrival: {!
 Q.president = "Hitler";
 Q.fuehrer_state = 1;
-Q.fuehrer = "Adolf Hitler";
+Q.fuehrer_name = "Adolf Hitler";
 !}
 
 <span style="color: #7A3C00;">**Adolf Hitler**</span> is assuming the powers of the Presidency while retaining the office of Chancellor. This marks the final end of democracy in Germany.
