@@ -1,16 +1,21 @@
-title: The <span style="color: #7A3C00;">**Fuehrer State**</span>...
-subtitle: The <span style="color: #7A3C00;">**Fuehrer State**</span> will be established
+title: The Fuehrer State
+subtitle: Testing Event
 new-page: true
-frequency: 1000
 view-if: year == 1928 and month >= 2
+
 on-arrival: {!
 Q.president = "Hitler";
 Q.fuehrer_state = 1;
 Q.fuehrer_name = "Adolf Hitler";
+Q.test_var = "BANANE";
 !}
 
-<span style="color: #7A3C00;">**Adolf Hitler**</span> is assuming the powers of the Presidency while retaining the office of Chancellor. This marks the final end of democracy in Germany.
+= The Fuehrer State
 
-- @kurwa: Well... this is bad.
+President: [+ president +]
+Fuehrer State: [+ fuehrer_state +]
+Fuehrer Name: [+ fuehrer_name +]
+Test Variable: [+ test_var +]
 
-@kurwa
+- @continue: Continue
+@continue
