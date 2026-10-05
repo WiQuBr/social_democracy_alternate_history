@@ -13,7 +13,7 @@ At the Labor and Socialist International, we can forge contacts with our fratern
 - @fr_uk: Build relationships with the French SFIO and British Labour Party to move their governments in Germany's favor.
 - @austria: Learn organization and street fighting from the Austrian SDAPÖ.
 - @scandi: Learn the path of economics and reform from the Scandinavian social democrats.
-- @comintern: Forget the second international - embed a spy in the Comintern's conference.
+- @comintern: Forget the second international - embed a spy in the <span style="color: #700000;">**Comintern**</span>'s conference.
 - @america: Contact the Socialist party of America.
 - @return: We do not need international contacts at the moment.
 - @easy_discard
@@ -53,7 +53,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; kpd_relation += 5*(1-dissent); communist_coalition += 1 if comintern_seen == 0; comintern_seen += 1
 
-The Stalinists of the KPD insists on calling us "social fascists", suggesting that we social democrats are as bad or worse than actual fascists. Needless to say, this is not good for our relationship with the Communists. By observing the Comintern, we can better understand the KPD, enabling us to potentially improve relations, or counter the KPD if it may come to that.
+The <span style="color: #700000;">**Stalinists**</span> of the <span style="color: #700000;">**KPD**</span> insists on calling us "social fascists", suggesting that we social democrats are as bad or worse than actual fascists. Needless to say, this is not good for our relationship with the <span style="color: #700000;">**Communists**</span>. By observing the <span style="color: #700000;">**Comintern**</span>, we can better understand the <span style="color: #700000;">**KPD**</span>, enabling us to potentially improve relations, or counter the <span style="color: #700000;">**KPD**</span> if it may come to that.
 
 @america
 subtitle: -1 resources
