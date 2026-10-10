@@ -168,17 +168,12 @@ on-arrival: {!
 
     if (total_support === 0) total_support = 1;
 
+    // Ergebnisse immer auf eine Nachkommastelle gerundet
     for (var party of Q.parties) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
         Q[party + '_votes_dec'] = Math.round(Q[party + '_normalized'] * 1000) / 10;
-
-        if (Q.use_decimals) {
-            Q[party + '_votes'] = Q[party + '_votes_dec'];
-            Q[party + '_votes_disp'] = Q[party + '_votes'];
-        } else {
-            Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
-            Q[party + '_votes_disp'] = Q[party + '_votes_dec'].toFixed(1);
-        }
+        Q[party + '_votes'] = Q[party + '_votes_dec'];
+        Q[party + '_votes_disp'] = Q[party + '_votes'].toFixed(1);
     }
 
     // Debug-Ausgabe ganz am Ende
