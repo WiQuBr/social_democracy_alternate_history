@@ -124,35 +124,7 @@ if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
     Q.largest_party = 'KPD';
 }
 
-// coalitions (alle auf eine Nachkommastelle gerundet)
-// Weimarer Koalition: Zentrum OHNE BVP (frueher: z_r - 3)
-Q.weimar_coalition = r1(Q.spd_r + Q.ddp_r + Q.z_only_r);
-Q.grand_coalition = r1(Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r);
-Q.socialliberal_coalition = r1(Q.spd_r + Q.ddp_r);
-Q.bourgeois_coalition = r1(Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r);
-Q.center_right_coalition = r1(Q.z_r + Q.ddp_r + Q.dvp_r + Q.other_r + Q.dnvp_r);
-Q.right_coalition = r1(Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r);
-Q.far_right_coalition = r1(Q.dnvp_r + Q.nsdap_r);
-Q.left_coalition = r1(Q.spd_r + Q.kpd_r + Q.sapd_r);
-// this is an absurd concept lol
-Q.popular_front_coalition = r1(Q.spd_r + Q.kpd_r + Q.z_only_r + Q.ddp_r + Q.sapd_r);
-Q.anti_democratic_coalition = r1(Q.kpd_r + Q.nsdap_r + Q.dnvp_r);
-// aka everyone except nazi, kpd, dnvp
-Q.neo_weimar_coalition = r1(Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r);
-// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
-Q.hitler_right_coalition = r1(Q.z_r + Q.dnvp_r + Q.nsdap_r);
-// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
-Q.progressive_coalition = r1(Q.spd_r + Q.kpd_r + Q.ddp_r + Q.sapd_r);
-
-if (Q.kpd_relation >= 30) {
-    Q.weimar_coalition = r1(Q.weimar_coalition + Q.sapd_r);
-}
-
-// Anzeige-Strings (immer mit einer Nachkommastelle, z.B. "45.0")
-var coalition_names = ['weimar', 'grand', 'socialliberal', 'bourgeois', 'center_right', 'right', 'far_right', 'left', 'popular_front', 'anti_democratic', 'neo_weimar', 'hitler_right', 'progressive'];
-for (var cname of coalition_names) {
-    Q[cname + '_coalition_disp'] = Q[cname + '_coalition'].toFixed(1);
-}
+// Koalitionen werden unten aus den SITZEN berechnet (Prozent = Sitzanteil).
 
 // ============================================================
 // NEU: SITZVERTEILUNG (Hare-Niemeyer) UND MEHRHEITEN
@@ -160,23 +132,64 @@ for (var cname of coalition_names) {
 Q.total_seats = 500;                                   // <- hier Gesamtsitzzahl einstellen (WR hatte keine feste Zahl)
 Q.majority_seats = Math.floor(Q.total_seats / 2) + 1;  // 500 -> 251, 600 -> 301
 
+// Viele Stimmen fuer Kleinstparteien verfielen (Reststimmen, kein Sitz).
+// Historisch (1920-1933, aus Wahlergebnissen und Sitzen berechnet): Faktor zwischen 0,61 und 0,88,
+// Durchschnitt ca. 0,72 (1928: 0,72; 1930: 0,88). Gilt unabhaengig von einer Sperrklausel.
+// Kann an anderer Stelle im Spiel gesetzt werden, hier nur Standardwert:
+if (typeof Q.other_seat_factor !== 'number') {
+    Q.other_seat_factor = 0.72;
+}
+
 var seat_parties = ['kpd', 'sapd', 'spd', 'ddp', 'z_only', 'bvp', 'dvp', 'other', 'dnvp', 'nsdap'];
-var seat_pct_sum = 0;
+
+// Sitzverteilung (Hare-Niemeyer / groesste Reste) aus Prozentwerten je Partei.
+// "other" wird mit other_seat_factor gewichtet (verfallene Splitterstimmen).
+var allocate_seats = function(pct) {
+    var w = {};
+    var wsum = 0;
+    for (var sp of seat_parties) {
+        w[sp] = (pct[sp] || 0) * (sp == 'other' ? Q.other_seat_factor : 1);
+        wsum += w[sp];
+    }
+    var res = {};
+    var given = 0;
+    var rest = [];
+    for (var sp of seat_parties) {
+        var ex = wsum > 0 ? w[sp] * Q.total_seats / wsum : 0;
+        res[sp] = Math.floor(ex);
+        given += res[sp];
+        rest.push({party: sp, rest: ex - Math.floor(ex)});
+    }
+    // uebrige Sitze an die groessten Reste
+    rest.sort(function(a, b) { return b.rest - a.rest; });
+    for (var i = 0; i < Q.total_seats - given && i < rest.length; i++) {
+        res[rest[i].party] += 1;
+    }
+    return res;
+};
+
+// aktuelle und vorherige Wahl (aus den alten Stimmenanteilen) -> Sitze
+var pct_new = {};
+var pct_old = {};
 for (var sp of seat_parties) {
-    seat_pct_sum += (Q[sp + '_r'] || 0);
+    pct_new[sp] = Q[sp + '_r'] || 0;
+    pct_old[sp] = Q['old_' + sp + '_r'] || 0;
 }
-var seat_rest = [];
-var seats_given = 0;
+var seats_new = allocate_seats(pct_new);
+var seats_old = allocate_seats(pct_old);
+
 for (var sp of seat_parties) {
-    var exact = seat_pct_sum > 0 ? (Q[sp + '_r'] || 0) * Q.total_seats / seat_pct_sum : 0;
-    Q['seats_' + sp] = Math.floor(exact);
-    seats_given += Q['seats_' + sp];
-    seat_rest.push({party: sp, rest: exact - Math.floor(exact)});
-}
-// uebrige Sitze an die groessten Reste
-seat_rest.sort(function(a, b) { return b.rest - a.rest; });
-for (var i = 0; i < Q.total_seats - seats_given && i < seat_rest.length; i++) {
-    Q['seats_' + seat_rest[i].party] += 1;
+    Q['seats_' + sp] = seats_new[sp];
+    // Sitzanteil in Prozent (eine Nachkommastelle)
+    Q['seat_pct_' + sp] = r1(seats_new[sp] * 100 / Q.total_seats);
+    Q['seat_pct_' + sp + '_disp'] = Q['seat_pct_' + sp].toFixed(1);
+    // Veraenderung des Sitzanteils in PROZENTPUNKTEN gegenueber der letzten Wahl
+    var old_seat_pct = r1(seats_old[sp] * 100 / Q.total_seats);
+    Q['change_seat_pct_' + sp] = r1(Q['seat_pct_' + sp] - old_seat_pct);
+    // Veraenderung in Sitzen (absolut) und als Text "+4 (+0.6 pp)"
+    Q['change_seats_' + sp] = seats_new[sp] - seats_old[sp];
+    Q['str_seat_change_' + sp] = (Q['change_seats_' + sp] > 0 ? '+' : '') + Q['change_seats_' + sp]
+        + ' (' + (Q['change_seat_pct_' + sp] > 0 ? '+' : '') + Q['change_seat_pct_' + sp].toFixed(1) + ' pp)';
 }
 
 // Koalitionen: Sitze und Mehrheit (>= majority_seats)
@@ -204,6 +217,9 @@ for (var cname in coalition_members) {
         cseats += Q['seats_' + m];
     }
     Q[cname + '_coalition_seats'] = cseats;
+    // Prozentwert der Koalition = Sitzanteil (passt immer zur Mehrheit)
+    Q[cname + '_coalition'] = r1(cseats * 100 / Q.total_seats);
+    Q[cname + '_coalition_disp'] = Q[cname + '_coalition'].toFixed(1);
     Q[cname + '_coalition_majority'] = cseats >= Q.majority_seats ? 1 : 0;
 }
 
@@ -363,26 +379,26 @@ go-to: coalition_menu
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
 {!<table>!} 
-{!<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Seats</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_r_disp +]%** {!</td><td>!} **[+ str_change_spd +]** {!</td><td>!} [+ seats_spd +] {!</td></tr>!}
+{!<tr><td>Party</td><td>Vote share</td><td>Change (pp)</td><td>Seats (share)</td><td>Seat change</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_r_disp +]%** {!</td><td>!} **[+ str_change_spd +]** {!</td><td>!} [+ seats_spd +] ([+ seat_pct_spd_disp +]%) {!</td><td>!} [+ str_seat_change_spd +] {!</td></tr>!}
 
-[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_r_disp +]% {!</td><td>!} [+ str_change_sapd +] {!</td><td>!} [+ seats_sapd +] {!</td></tr>!} ?]
+[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_r_disp +]% {!</td><td>!} [+ str_change_sapd +] {!</td><td>!} [+ seats_sapd +] ([+ seat_pct_sapd_disp +]%) {!</td><td>!} [+ str_seat_change_sapd +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_r_disp +]% {!</td><td>!} [+ str_change_kpd +] {!</td><td>!} [+ seats_kpd +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_r_disp +]% {!</td><td>!} [+ str_change_kpd +] {!</td><td>!} [+ seats_kpd +] ([+ seat_pct_kpd_disp +]%) {!</td><td>!} [+ str_seat_change_kpd +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_r_disp +]% {!</td><td>!} [+ str_change_ddp +] {!</td><td>!} [+ seats_ddp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_r_disp +]% {!</td><td>!} [+ str_change_ddp +] {!</td><td>!} [+ seats_ddp +] ([+ seat_pct_ddp_disp +]%) {!</td><td>!} [+ str_seat_change_ddp +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_only_r_disp +]% {!</td><td>!} [+ str_change_z_only +] {!</td><td>!} [+ seats_z_only +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_only_r_disp +]% {!</td><td>!} [+ str_change_z_only +] {!</td><td>!} [+ seats_z_only +] ([+ seat_pct_z_only_disp +]%) {!</td><td>!} [+ str_seat_change_z_only +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !} BVP: {!</td><td>!} [+ bvp_r_disp +]% {!</td><td>!} [+ str_change_bvp +] {!</td><td>!} [+ seats_bvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !} BVP: {!</td><td>!} [+ bvp_r_disp +]% {!</td><td>!} [+ str_change_bvp +] {!</td><td>!} [+ seats_bvp +] ([+ seat_pct_bvp_disp +]%) {!</td><td>!} [+ str_seat_change_bvp +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_r_disp +]% {!</td><td>!} [+ str_change_dvp +] {!</td><td>!} [+ seats_dvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_r_disp +]% {!</td><td>!} [+ str_change_dvp +] {!</td><td>!} [+ seats_dvp +] ([+ seat_pct_dvp_disp +]%) {!</td><td>!} [+ str_seat_change_dvp +] {!</td></tr>!}
  
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_r_disp +]% {!</td><td>!} [+ str_change_other +] {!</td><td>!} [+ seats_other +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_r_disp +]% {!</td><td>!} [+ str_change_other +] {!</td><td>!} [+ seats_other +] ([+ seat_pct_other_disp +]%) {!</td><td>!} [+ str_seat_change_other +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_r_disp +]% {!</td><td>!} [+ str_change_dnvp +] {!</td><td>!} [+ seats_dnvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_r_disp +]% {!</td><td>!} [+ str_change_dnvp +] {!</td><td>!} [+ seats_dnvp +] ([+ seat_pct_dnvp_disp +]%) {!</td><td>!} [+ str_seat_change_dnvp +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_r_disp +]% {!</td><td>!} [+ str_change_nsdap +] {!</td><td>!} [+ seats_nsdap +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_r_disp +]% {!</td><td>!} [+ str_change_nsdap +] {!</td><td>!} [+ seats_nsdap +] ([+ seat_pct_nsdap_disp +]%) {!</td><td>!} [+ str_seat_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
